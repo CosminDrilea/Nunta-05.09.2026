@@ -5,8 +5,8 @@
 <title>Cosmin & Oana</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat&display=swap" rel="stylesheet">
+<!-- FONTURI -->
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat&display=swap" rel="stylesheet">
 
 <style>
 body {
@@ -22,108 +22,126 @@ nav {
     position: fixed;
     top: 0;
     width: 100%;
-    background-color: #fff;
+    background: rgba(255,255,255,0.95);
     border-bottom: 1px solid #d8cfc1;
     z-index: 100;
     display: flex;
     justify-content: center;
 }
 nav a {
-    display: inline-block;
-    padding: 15px 25px;
+    padding: 15px 22px;
     text-decoration: none;
     color: #3b3b3b;
     font-weight: 600;
-    transition: 0.3s;
 }
 nav a:hover {
     background-color: #3b3b3b;
     color: #fff;
 }
 
-/* CONTAINER */
+/* CONTAINERE */
 .container {
-    max-width: 700px;
+    max-width: 800px;
     margin: auto;
-    padding: 100px 20px 40px 20px; /* top padding for navbar */
+    padding: 120px 20px;
     text-align: center;
 }
 
-/* TITLURI */
-h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: 48px;
-    font-weight: 700;
-    margin-bottom: 10px;
+/* FONT DE MÂNĂ */
+h1, h2 {
+    font-family: 'Great Vibes', cursive;
 }
-h2 {
-    font-size: 22px;
-    margin-bottom: 20px;
-}
+h1 { font-size: 64px; }
+h2 { font-size: 36px; }
+
 h3 {
-    font-size: 20px;
+    font-size: 22px;
     margin-top: 40px;
-    margin-bottom: 15px;
 }
-.divider {
-    width: 80px;
-    height: 1px;
-    background-color: #c1b6a4;
-    margin: 20px auto 30px auto;
-}
+
 p {
     font-size: 18px;
     line-height: 1.6;
 }
-.date {
-    font-size: 22px;
-    margin: 20px 0;
+
+.divider {
+    width: 90px;
+    height: 1px;
+    background: #c1b6a4;
+    margin: 25px auto;
 }
-.event {
-    margin-top: 25px;
+
+/* ACASĂ – POZĂ FUNDAL */
+/* 🔴 AICI pui poza: images/acasa.jpg */
+.hero {
+    background-image: url('images/acasa.jpg');
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    text-shadow: 1px 1px 6px rgba(0,0,0,0.6);
 }
+
+/* UNDE – POZĂ FUNDAL */
+/* 🔴 AICI pui poza: images/unde.jpg */
+.where {
+    background-image: url('images/unde.jpg');
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    text-shadow: 1px 1px 6px rgba(0,0,0,0.6);
+}
+
+/* CONFIRMARE – MARO DESCHIS */
+.confirmare {
+    background-color: #efe3d3;
+}
+
+/* BUTOANE */
 .button {
     display: inline-block;
-    margin-top: 12px;
-    padding: 10px 25px;
+    padding: 12px 28px;
+    margin-top: 15px;
     border: 1px solid #3b3b3b;
-    background: none;
-    color: #3b3b3b;
-    font-size: 16px;
-    cursor: pointer;
-    transition: 0.3s;
+    border-radius: 30px;
     text-decoration: none;
+    color: #3b3b3b;
 }
 .button:hover {
-    background-color: #3b3b3b;
+    background: #3b3b3b;
     color: #fff;
 }
-input, select, textarea, button.submit-btn {
+
+/* FORMULAR */
+input, select, textarea {
     width: 90%;
-    max-width: 360px;
+    max-width: 380px;
     padding: 12px;
     margin: 10px auto;
-    font-size: 16px;
+    border: 1px solid #c1b6a4;
+    border-radius: 6px;
     display: block;
+    font-size: 16px;
 }
+
 textarea { resize: none; }
+
+.submit-btn {
+    background: none;
+    cursor: pointer;
+}
+
 #thankYou {
     display: none;
-    font-size: 20px;
-    margin-top: 30px;
-    font-weight: bold;
-    color: #3b3b3b;
-}
-.confirmare-finala {
-    margin-top: 50px;
     font-size: 22px;
     font-weight: bold;
-    letter-spacing: 1px;
+    margin-top: 30px;
 }
-.footer {
-    margin-top: 40px;
-    font-size: 14px;
-    color: #777;
+
+/* TEXT FINAL */
+.confirmare-finala {
+    margin-top: 50px;
+    font-size: 24px;
+    font-weight: bold;
 }
 </style>
 </head>
@@ -137,21 +155,29 @@ textarea { resize: none; }
 <a href="#confirmare">Confirmare</a>
 </nav>
 
-<div class="container" id="acasa">
+<!-- ACASĂ -->
+<div class="container hero" id="acasa">
 <h2>Ne căsătorim</h2>
 <h1>Cosmin & Oana</h1>
 <div class="divider"></div>
 <p>
-Cu inimile pline de bucurie,<br>
-vă invităm să fiți alături de noi<br>
-la celebrarea iubirii noastre.
+Vă așteptăm cu drag alături de noi<br>
+pentru a celebra iubirea și începutul<br>
+unei noi povești împreună.
 </p>
-<div class="date">
-5 septembrie 2026<br>
-Ora 20:00
-</div>
+<p style="font-size:22px;margin-top:20px;">
+5 septembrie 2026<br>Ora 20:00
+</p>
+
+<p style="margin-top:30px;">
+Vă rugăm să fiți alături de noi la<br>
+<strong>dansul mirilor – ora 21:30</strong>,<br>
+un moment special pe care dorim<br>
+să îl trăim împreună cu voi.
+</p>
 </div>
 
+<!-- CINE -->
 <div class="container" id="cine">
 <h3>Părinți</h3>
 <p>Firița & Ionică<br>Nadia & Ion</p>
@@ -160,110 +186,81 @@ Ora 20:00
 <p>Andreea & Gabriel Mazăre</p>
 </div>
 
-<div class="container" id="unde">
+<!-- UNDE -->
+<div class="container where" id="unde">
 <h3>Evenimentele noastre</h3>
 
-<div class="event">
 <p><strong>Cununia religioasă</strong><br>Biserica <strong>[scrii tu]</strong></p>
-<a class="button" href="https://www.google.com/maps?q=LAT_BISERICA,LONG_BISERICA" target="_blank">Vezi locația pe hartă</a>
-</div>
-
-<div class="event">
-<p><strong>Petrecerea</strong><br>Restaurant <strong>[Pensiunea Sara Focsani]</strong></p>
-<a class="button" href="https://www.google.com/maps/@45.6809303,27.204498,17z?entry=ttu&g_ep=EgoyMDI2MDExMy4wIKXMDSoASAFQAw%3D%3D" target="_blank">Vezi locația pe hartă</a>
-</div>
-</div>
-
-<div class="container" id="confirmare">
-<h3>Confirmare prezență</h3>
-
-<form id="rsvpForm" action="https://formspree.io/f/abcdwxyz" method="POST">
-<input type="text" name="nume" placeholder="Nume și prenume" required>
-
-<select name="participare" id="participare" required>
-<option value="">Participare</option>
-<option value="Particip">Particip</option>
-<option value="Nu pot participa">Nu pot participa</option>
-</select>
-
-<select id="total" name="total_persoane" required>
-<option value="">Număr total persoane</option>
-<option value="1">1</option>
-<option value="2">2</option>
-<option value="3">3</option>
-<option value="4">4</option>
-<option value="5">5</option>
-</select>
-
-<p>Tip meniu</p>
-
-<select id="normal" name="meniu_normal">
-<option value="0">Meniu normal</option>
-<option value="1">1</option>
-<option value="2">2</option>
-<option value="3">3</option>
-<option value="4">4</option>
-<option value="5">5</option>
-</select>
-
-<select id="vegan" name="meniu_vegan">
-<option value="0">Meniu vegan</option>
-<option value="1">1</option>
-<option value="2">2</option>
-<option value="3">3</option>
-</select>
-
-<select id="copii" name="meniu_copii">
-<option value="0">Meniu copii</option>
-<option value="1">1</option>
-<option value="2">2</option>
-<option value="3">3</option>
-</select>
-
-<textarea name="observatii" rows="3" placeholder="Alergii / mențiuni speciale (opțional)"></textarea>
-
-<button type="submit" class="submit-btn button">Trimite confirmarea</button>
-</form>
-
-<div id="thankYou">
-Mulțumim pentru confirmare!Nu uitați să fiți prezenți la momentul nostru special: dansul mirilor, care va avea loc la ora 21:30.Prezența voastră va face ca acest moment să fie cu adevărat magic și de neuitat pentru noi! 💛<br>Abia așteptăm să sărbătorim împreună.
-</div>
+<a class="button" href="https://www.google.com/maps?q=LAT_BISERICA,LONG_BISERICA" target="_blank">
+Vezi locația
+</a>
 
 <div class="divider"></div>
 
-<p class="confirmare-finala">
-Nu uitați să fiți prezenți la momentul nostru special: dansul mirilor, care va avea loc la ora 21:30.Prezența voastră va face ca acest moment să fie cu adevărat magic și de neuitat pentru noi! Vă rugăm să confirmați până pe data de<br><strong>20.07.2026</strong>
-</p>
-
-<div class="footer">
-Cu drag,<br>Cosmin & Oana
+<p><strong>Petrecerea</strong><br>Restaurant <strong>Pensiunea Sara Focsani</strong></p>
+<a class="button" href="https://www.google.com/maps/place/Pensiunea+Sara/@45.6809828,27.2036504,17z/data=!4m10!3m9!1s0x40b41f48cd217b2f:0xa88c49d2e322fe92!5m3!1s2026-01-19!4m1!1i2!8m2!3d45.6809828!4d27.2062253!16s%2Fg%2F12qgzw284?entry=ttu&g_ep=EgoyMDI2MDExMy4wIKXMDSoASAFQAw%3D%3D" target="_blank">
+Vezi locația
+</a>
 </div>
+
+<!-- CONFIRMARE -->
+<div class="container confirmare" id="confirmare">
+<h3>Confirmare prezență</h3>
+
+<form id="rsvpForm" action="https://formspree.io/f/abcdwxyz" method="POST">
+<!-- 🔴 AICI pui linkul REAL de la Formspree -->
+
+<input type="text" name="nume" placeholder="Nume și prenume" required>
+
+<select name="participare" required>
+<option value="">Participare</option>
+<option>Particip</option>
+<option>Nu pot participa</option>
+</select>
+
+<select id="total" name="total_persoane" required>
+<option value="">Număr persoane</option>
+<option>1</option><option>2</option><option>3</option><option>4</option>
+</select>
+
+<select id="normal" name="meniu_normal">
+<option value="0">Meniu normal</option><option>1</option><option>2</option><option>3</option>
+</select>
+
+<select id="vegan" name="meniu_vegan">
+<option value="0">Meniu vegan</option><option>1</option><option>2</option>
+</select>
+
+<select id="copii" name="meniu_copii">
+<option value="0">Meniu copii</option><option>1</option><option>2</option>
+</select>
+
+<textarea name="observatii" placeholder="Alergii / mențiuni (opțional)"></textarea>
+
+<button class="submit-btn button" type="submit">Trimite confirmarea</button>
+</form>
+
+<div id="thankYou">
+Mulțumim pentru confirmare! 💛
+</div>
+
+<p class="confirmare-finala">
+Vă rugăm să confirmați până pe data de<br><strong>20.07.2026</strong>
+</p>
 </div>
 
 <script>
 document.getElementById("rsvpForm").addEventListener("submit", function(e){
     e.preventDefault();
-    const total = parseInt(document.getElementById("total").value||0);
-    const normal = parseInt(document.getElementById("normal").value||0);
-    const vegan = parseInt(document.getElementById("vegan").value||0);
-    const copii = parseInt(document.getElementById("copii").value||0);
-
-    if(normal + vegan + copii !== total){
-        alert("Numărul meniurilor trebuie să fie egal cu numărul total de persoane.");
+    let t = +total.value, n = +normal.value, v = +vegan.value, c = +copii.value;
+    if(n+v+c !== t){
+        alert("Numărul meniurilor trebuie să fie egal cu numărul persoanelor.");
         return;
     }
-
-    fetch(this.action,{
-        method:"POST",
-        body:new FormData(this),
-        headers:{'Accept':'application/json'}
-    }).then(response=>{
-        if(response.ok){
-            this.style.display="none";
-            document.getElementById("thankYou").style.display="block";
-        } else {
-            alert("A apărut o eroare. Te rugăm să încerci din nou.");
-        }
+    fetch(this.action,{method:"POST",body:new FormData(this),headers:{Accept:"application/json"}})
+    .then(r=>{
+        if(r.ok){ this.style.display="none"; thankYou.style.display="block"; }
+        else alert("Eroare la trimitere.");
     });
 });
 </script>
