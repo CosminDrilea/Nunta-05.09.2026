@@ -271,7 +271,7 @@ unei noi povești împreună.</p>
   <a class="locatie-btn" href="https://www.google.com/maps/place/Pensiunea+Sara/@45.6810143,27.1843426,14z/data=!4m26!1m15!4m14!1m6!1m2!1s0x40b41f48cd217b2f:0xa88c49d2e322fe92!2sPensiunea+Sara,+B-dul+Brailei,+Foc%C8%99ani!2m2!1d27.2062589!2d45.6810088!1m6!1m2!1s0x40b57372786254b5:0x5f889f0e35e249fd!2sdobnar,+C%C4%83prioarei+35,+Bac%C4%83u+607263!2m2!1d26.8659438!2d46.4666237!3m9!1s0x40b41f48cd217b2f:0xa88c49d2e322fe92!5m3!1s2026-01-19!4m1!1i2!8m2!3d45.6809828!4d27.2062253!16s%2Fg%2F12qgzw284?entry=ttu&g_ep=EgoyMDI2MDExMy4wIKXMDSoASAFQAw%3D%3D" target="_blank">Vezi pe hartă</a>
 </section>
 
-<section id="confirmare">
+<section id="confirmare" class="fade">
   <h2>Confirmare prezență</h2>
 
   <form>
@@ -279,20 +279,41 @@ unei noi povești împreună.</p>
 
     <select required>
       <option value="">Participare</option>
-      <option value="da">Particip</option>
-      <option value="nu">Nu pot participa</option>
+      <option>Particip</option>
+      <option>Nu pot participa</option>
     </select>
 
-    <input type="number" min="1" placeholder="Număr total persoane" required>
+    <select required>
+      <option value="">Număr total persoane</option>
+      <option>1</option><option>2</option><option>3</option><option>4</option>
+    </select>
 
-    <h3 style="margin:20px 0 10px;">Tip meniu</h3>
+    <select>
+      <option>Meniu normal</option>
+      <option>0</option><option>1</option><option>2</option>
+    </select>
 
-    <input type="number" min="0" placeholder="Meniu normal – număr">
-    <input type="number" min="0" placeholder="Meniu copii – număr">
-    <input type="number" min="0" placeholder="Meniu vegan – număr">
+    <select>
+      <option>Meniu vegan</option>
+      <option>0</option><option>1</option><option>2</option>
+    </select>
 
-    <button type="submit">Confirmă</button>
+    <select>
+      <option>Meniu copii</option>
+      <option>0</option><option>1</option><option>2</option>
+    </select>
+
+    <textarea placeholder="Alergii / mențiuni speciale"></textarea>
+
+    <button>Trimite confirmarea</button>
   </form>
+
+  <div class="bg-text">Confirmare până pe data de 20.07.2026</div>
+  <div class="special">
+    Vă rugăm să fiți alături de noi la dansul mirilor – ora 21:00,
+    un moment special pe care dorim să îl trăim împreună cu voi.
+  </div>
+</section>
 
   <div class="confirmare-text">
     Confirmare până la data de <strong>20.07.2026</strong>
