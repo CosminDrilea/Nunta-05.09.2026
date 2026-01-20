@@ -276,26 +276,33 @@ unei noi povești împreună.</p>
 
   <form>
     <input type="text" placeholder="Nume și prenume" required>
+
     <select required>
       <option value="">Participare</option>
-      <option>Da</option>
-      <option>Nu</option>
+      <option value="da">Particip</option>
+      <option value="nu">Nu pot participa</option>
     </select>
-    <select>
-      <option>Meniu normal</option>
-      <option>Meniu copii</option>
-      <option>Meniu vegan</option>
-    </select>
+
+    <input type="number" min="1" placeholder="Număr total persoane" required>
+
+    <h3 style="margin:20px 0 10px;">Tip meniu</h3>
+
+    <input type="number" min="0" placeholder="Meniu normal – număr">
+    <input type="number" min="0" placeholder="Meniu copii – număr">
+    <input type="number" min="0" placeholder="Meniu vegan – număr">
+
     <button type="submit">Confirmă</button>
   </form>
 
   <div class="confirmare-text">
-    Confirmare până la data de 20.07.2026
+    Confirmare până la data de <strong>20.07.2026</strong>
+
     <p style="margin-top:30px;">
-    Vă rugăm să fiți alături de noi la<br>
-    <strong>dansul mirilor – ora 21:30</strong>,<br>
-    un moment special pe care dorim<br>
-    să îl trăim împreună cu voi.</p>
+      Vă rugăm să fiți alături de noi la<br>
+      <strong>dansul mirilor – ora 21:00</strong>,<br>
+      un moment special pe care dorim<br>
+      să îl trăim împreună cu voi.
+    </p>
   </div>
 </section>
 
