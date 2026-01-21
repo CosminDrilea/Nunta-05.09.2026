@@ -276,7 +276,7 @@ unei noi povești împreună.</p>
 <section id="confirmare" class="fade">
   <h2>Confirmare prezență</h2>
 
-  <form id="rsvpForm">
+  <form id="rsvpForm" onsubmit="trimiteConfirmarea(event)">
     <input type="text" name="nume" id="nume" placeholder="Nume și prenume" required>
 
     <select name="participare" id="participare" required>
@@ -312,7 +312,7 @@ unei noi povești împreună.</p>
 </select>
 
 
-    <button>Trimite confirmarea</button>
+    <button type="submit">Trimite confirmarea</button>
   </form>
 
   <div class="bg-text">Confirmare până pe data de 20.07.2026</div>
@@ -326,25 +326,49 @@ unei noi povești împreună.</p>
 </section>
 
   <script>
-const form = document.getElementById("rsvpForm");
-/* ... */
-form.addEventListener("submit", function(e) {
+function trimiteConfirmarea(e) {
   e.preventDefault();
 
-  /* validare */
+  const nume = document.getElementById("nume").value;
+  const participare = document.getElementById("participare").value;
+  const persoane = Number(document.getElementById("persoane").value || 0);
+  const meniuNormal = Number(document.getElementById("meniu_normal").value || 0);
+  const meniuCopii = Number(document.getElementById("meniu_copii").value || 0);
+  const meniuVegan = Number(document.getElementById("meniu_vegan").value || 0);
 
-  fetch("https://docs.google.com/forms/d/....../formResponse", {
+  const totalMeniuri = meniuNormal + meniuCopii + meniuVegan;
+
+  if (participare === "Nu pot participa" && totalMeniuri > 0) {
+    alert("Dacă nu participați, nu selectați meniuri.");
+    return;
+  }
+
+  if (participare === "Particip" && totalMeniuri !== persoane) {
+    alert("Totalul meniurilor trebuie să fie egal cu numărul de persoane.");
+    return;
+  }
+
+  const data = new FormData();
+  data.append("entry.961949900", nume);
+  data.append("entry.111111111", participare);
+  data.append("entry.222222222", persoane);
+  data.append("entry.333333333", meniuNormal);
+  data.append("entry.444444444", meniuCopii);
+  data.append("entry.555555555", meniuVegan);
+
+  fetch("https://docs.google.com/forms/d/1cfeZU2wZziVsVwis7x4NL1f9NdMCyaZVIFlOGifch7o/formResponse", {
     method: "POST",
     body: data,
     mode: "no-cors"
   });
 
   localStorage.setItem("rsvpTrimis", "da");
-  form.innerHTML = `
+
+  document.getElementById("rsvpForm").innerHTML = `
     <h3 style="margin-top:20px;">Vă mulțumim ❤️</h3>
     <p>Confirmarea a fost înregistrată.</p>
   `;
-});
+}
 </script>
 
 </body>
