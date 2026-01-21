@@ -327,80 +327,24 @@ unei noi povești împreună.</p>
 
   <script>
 const form = document.getElementById("rsvpForm");
-const participare = document.getElementById("participare");
-const persoane = document.getElementById("persoane");
-const meniuNormal = document.getElementById("meniu_normal");
-const meniuCopii = document.getElementById("meniu_copii");
-const meniuVegan = document.getElementById("meniu_vegan");
-
-/* BLOCARE dacă a mai fost trimis */
-if (localStorage.getItem("rsvpTrimis") === "da") {
-  form.innerHTML = `
-    <h3 style="margin-top:20px;">Vă mulțumim ❤️</h3>
-    <p>Confirmarea dvs. a fost deja trimisă.</p>
-  `;
-}
-
-/* Activare / dezactivare câmpuri */
-participare.addEventListener("change", () => {
-  const participa = participare.value === "Particip";
-
-  persoane.disabled = !participa;
-  meniuNormal.disabled = !participa;
-  meniuCopii.disabled = !participa;
-  meniuVegan.disabled = !participa;
-
-  if (!participa) {
-    persoane.value = "";
-    meniuNormal.value = 0;
-    meniuCopii.value = 0;
-    meniuVegan.value = 0;
-  }
-});
-
-/* SUBMIT cu validare + trimitere + blocare */
+/* ... */
 form.addEventListener("submit", function(e) {
   e.preventDefault();
 
-  if (participare.value === "Particip") {
-    const p = Number(persoane.value || 0);
-    const totalMeniuri =
-      Number(meniuNormal.value || 0) +
-      Number(meniuCopii.value || 0) +
-      Number(meniuVegan.value || 0);
+  /* validare */
 
-    if (p < 1) {
-      alert("Introduceți numărul de persoane.");
-      return;
-    }
+  fetch("https://docs.google.com/forms/d/....../formResponse", {
+    method: "POST",
+    body: data,
+    mode: "no-cors"
+  });
 
-    if (totalMeniuri !== p) {
-      alert("Totalul meniurilor trebuie să fie egal cu numărul de persoane.");
-      return;
-    }
-  }
-
-  /* TRIMITERE FORMULAR CĂTRE GOOGLE FORMS */
-const data = new FormData();
-
-data.append("entry.961949900", document.getElementById("nume").value);
-data.append("entry.111111111", document.getElementById("participare").value);
-data.append("entry.222222222", document.getElementById("persoane").value);
-data.append("entry.333333333", document.getElementById("meniu_normal").value);
-data.append("entry.444444444", document.getElementById("meniu_copii").value);
-data.append("entry.555555555", document.getElementById("meniu_vegan").value);
-
-fetch("https://docs.google.com/forms/d/1cfeZU2wZziVsVwis7x4NL1f9NdMCyaZVIFlOGifch7o/formResponse", {
-  method: "POST",
-  body: data,
-  mode: "no-cors"
+  localStorage.setItem("rsvpTrimis", "da");
+  form.innerHTML = `
+    <h3 style="margin-top:20px;">Vă mulțumim ❤️</h3>
+    <p>Confirmarea a fost înregistrată.</p>
+  `;
 });
-
-localStorage.setItem("rsvpTrimis", "da");
-form.innerHTML = `
-  <h3 style="margin-top:20px;">Vă mulțumim ❤️</h3>
-  <p>Confirmarea a fost înregistrată.</p>
-`;
 </script>
 
 </body>
