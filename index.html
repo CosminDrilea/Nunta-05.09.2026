@@ -207,49 +207,7 @@ button {
 </style>
 </head>
   
-<script>
-document.getElementById("rsvpForm").addEventListener("submit", function(e) {
-  e.preventDefault();
 
-  const participare = document.getElementById("participare").value;
-  const persoane = parseInt(document.getElementById("persoane").value || 0);
-
-  const meniuNormal = parseInt(document.getElementById("meniu_normal").value || 0);
-  const meniuCopii = parseInt(document.getElementById("meniu_copii").value || 0);
-  const meniuVegan = parseInt(document.getElementById("meniu_vegan").value || 0);
-
-  const totalMeniuri = meniuNormal + meniuCopii + meniuVegan;
-
-  /* VALIDARE LOGICĂ */
-  if (participare === "Nu pot participa" && totalMeniuri > 0) {
-    alert("Dacă nu participați, nu selectați meniuri.");
-    return;
-  }
-
-  if (participare === "Particip" && totalMeniuri !== persoane) {
-    alert("Numărul total de meniuri trebuie să fie egal cu numărul de persoane.");
-    return;
-  }
-
-  /* TRIMITERE FORMULAR */
-  fetch(this.action, {
-    method: "POST",
-    body: new FormData(this),
-    headers: {
-      'Accept': 'application/json'
-    }
-  }).then(response => {
-    if (response.ok) {
-      this.innerHTML = `
-        <h3 style="margin-top:20px;">Vă mulțumim!</h3>
-        <p>Confirmarea a fost trimisă cu succes ❤️</p>
-      `;
-    } else {
-      alert("A apărut o eroare. Încercați din nou.");
-    }
-  });
-});
-</script>
   
 <body>
 
@@ -333,19 +291,25 @@ unei noi povești împreună.</p>
     </select>
 
     <select name="meniu_normal" id="meniu_normal">
-      <option>Meniu normal</option>
-      <option>0</option><option>1</option><option>2</option>
-    </select>
+  <option value="0">Meniu normal</option>
+  <option value="0">0</option>
+  <option value="1">1</option>
+  <option value="2">2</option>
+</select>
 
     <select name="meniu_vegan" id="meniu_vegan">
-      <option>Meniu vegan</option>
-      <option>0</option><option>1</option><option>2</option>
-    </select>
+  <option value="0">Meniu vegan</option>
+  <option value="0">0</option>
+  <option value="1">1</option>
+  <option value="2">2</option>
+</select>
 
     <select name="meniu_copii" id="meniu_copii">
-      <option>Meniu copii</option>
-      <option>0</option><option>1</option><option>2</option>
-    </select>
+  <option value="0">Meniu copii</option>
+  <option value="0">0</option>
+  <option value="1">1</option>
+  <option value="2">2</option>
+</select>
 
 
     <button>Trimite confirmarea</button>
