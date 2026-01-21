@@ -361,5 +361,26 @@ unei noi povești împreună.</p>
  
 </section>
 
+  <script>
+const form = document.getElementById("rsvpForm");
+const submitBtn = form.querySelector("button[type='submit']");
+
+form.addEventListener("input", () => {
+  const name = form.querySelector("input[name='nume']").value.trim();
+  const participation = form.querySelector("select[name='participare']").value;
+  const total =
+    Number(form.querySelector("input[name='meniu_normal']").value || 0) +
+    Number(form.querySelector("input[name='meniu_vegan']").value || 0) +
+    Number(form.querySelector("input[name='meniu_copil']").value || 0);
+
+  submitBtn.disabled = !(name && participation && total > 0);
+});
+
+form.addEventListener("submit", () => {
+  submitBtn.disabled = true;
+  submitBtn.innerText = "Se trimite...";
+});
+</script>
+
 </body>
 </html>
