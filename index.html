@@ -276,7 +276,11 @@ unei noi povești împreună.</p>
 <section id="confirmare" class="fade">
   <h2>Confirmare prezență</h2>
 
-  <form id="rsvpForm" onsubmit="trimiteConfirmarea(event)">
+  <form id="rsvpForm"
+      action="https://docs.google.com/forms/d/e/1FAIpQLSdMmJkKLExM8gpo9Cj29OJH3U36P8CRWoMNSQrpwSRCvCtVTA/formResponse"
+      method="POST"
+      target="hidden_iframe"
+      onsubmit="trimiteConfirmarea(event)">
     <input type="text" name="nume" id="nume" placeholder="Nume și prenume" required>
 
     <select name="participare" id="participare" required>
@@ -325,7 +329,7 @@ unei noi povești împreună.</p>
  
 </section>
 
-  <script>
+ <script>
 function trimiteConfirmarea(e) {
   e.preventDefault();
 
@@ -348,19 +352,7 @@ function trimiteConfirmarea(e) {
     return;
   }
 
-  const data = new FormData();
-  data.append("entry.961949900", nume);
-  data.append("entry.111111111", participare);
-  data.append("entry.222222222", persoane);
-  data.append("entry.333333333", meniuNormal);
-  data.append("entry.444444444", meniuCopii);
-  data.append("entry.555555555", meniuVegan);
-
-  fetch("https://docs.google.com/forms/u/0/d/1cfeZU2wZziVsVwis7x4NL1f9NdMCyaZVIFlOGifch7o/formResponse", {
-    method: "POST",
-    body: data,
-    mode: "no-cors"
-  });
+  document.getElementById("rsvpForm").submit();
 
   localStorage.setItem("rsvpTrimis", "da");
 
@@ -371,5 +363,7 @@ function trimiteConfirmarea(e) {
 }
 </script>
 
+<iframe name="hidden_iframe" style="display:none;"></iframe>
+  
 </body>
 </html>
