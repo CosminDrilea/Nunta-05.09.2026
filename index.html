@@ -363,22 +363,74 @@ unei noi povești împreună.</p>
 
   <script>
 const form = document.getElementById("rsvpForm");
-const submitBtn = form.querySelector("button[type='submit']");
+const participare = document.getElementById("participare");
+const persoane = document.getElementById("persoane");
+const meniuNormal = document.getElementById("meniu_normal");
+const meniuCopii = document.getElementById("meniu_copii");
+const meniuVegan = document.getElementById("meniu_vegan");
 
-form.addEventListener("input", () => {
-  const name = form.querySelector("input[name='nume']").value.trim();
-  const participation = form.querySelector("select[name='participare']").value;
-  const total =
-    Number(form.querySelector("input[name='meniu_normal']").value || 0) +
-    Number(form.querySelector("input[name='meniu_vegan']").value || 0) +
-    Number(form.querySelector("input[name='meniu_copil']").value || 0);
+/* BLOCARE dacă a mai fost trimis */
+if (localStorage.getItem("rsvpTrimis") === "da") {
+  form.innerHTML = `
+    <h3 style="margin-top:20px;">Vă mulțumim ❤️</h3>
+    <p>Confirmarea dvs. a fost deja trimisă.</p>
+  `;
+}
 
-  submitBtn.disabled = !(name && participation && total > 0);
+/* Activare / dezactivare câmpuri */
+participare.addEventListener("change", () => {
+  const participa = participare.value === "Particip";
+
+  persoane.disabled = !participa;
+  meniuNormal.disabled = !participa;
+  meniuCopii.disabled = !participa;
+  meniuVegan.disabled = !participa;
+
+  if (!participa) {
+    persoane.value = "";
+    meniuNormal.value = 0;
+    meniuCopii.value = 0;
+    meniuVegan.value = 0;
+  }
 });
 
-form.addEventListener("submit", () => {
-  submitBtn.disabled = true;
-  submitBtn.innerText = "Se trimite...";
+/* SUBMIT cu validare + trimitere + blocare */
+form.addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  if (participare.value === "Particip") {
+    const p = Number(persoane.value || 0);
+    const totalMeniuri =
+      Number(meniuNormal.value || 0) +
+      Number(meniuCopii.value || 0) +
+      Number(meniuVegan.value || 0);
+
+    if (p < 1) {
+      alert("Introduceți numărul de persoane.");
+      return;
+    }
+
+    if (totalMeniuri !== p) {
+      alert("Totalul meniurilor trebuie să fie egal cu numărul de persoane.");
+      return;
+    }
+  }
+
+  fetch(form.action, {
+    method: "POST",
+    body: new FormData(form),
+    headers: { "Accept": "application/json" }
+  }).then(response => {
+    if (response.ok) {
+      localStorage.setItem("rsvpTrimis", "da");
+      form.innerHTML = `
+        <h3 style="margin-top:20px;">Vă mulțumim ❤️</h3>
+        <p>Confirmarea a fost trimisă cu succes.</p>
+      `;
+    } else {
+      alert("A apărut o eroare. Vă rugăm să încercați din nou.");
+    }
+  });
 });
 </script>
 
