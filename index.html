@@ -354,26 +354,27 @@ function trimiteConfirmarea(e) {
   }
 
   fetch("https://script.google.com/macros/s/AKfycbymEdD2jpSFrYJYJhWZo1BJYADL-USHEFzZRDd1sUH0nmCRbtlEiIIVl8NnHU8RdYAJ6w/exec", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      nume,
-      participare,
-      persoane,
-      meniu_normal: meniuNormal,
-      meniu_copii: meniuCopii,
-      meniu_vegan: meniuVegan
-    })
+  method: "POST",
+  mode: "no-cors",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    nume,
+    participare,
+    persoane,
+    meniu_normal: meniuNormal,
+    meniu_copii: meniuCopii,
+    meniu_vegan: meniuVegan
   })
-  .then(() => {
-    localStorage.setItem("rsvpTrimis", "da");
-    document.getElementById("rsvpForm").innerHTML = `
-      <h3 style="margin-top:20px;">Vă mulțumim ❤️</h3>
-      <p>Confirmarea a fost înregistrată.</p>
-    `;
-  })
-  .catch(() => {
-    alert("Eroare la trimitere. Reîncercați.");
+});
+
+localStorage.setItem("rsvpTrimis", "da");
+document.getElementById("rsvpForm").innerHTML = `
+  <h3 style="margin-top:20px;">Vă mulțumim ❤️</h3>
+  <p>Confirmarea a fost înregistrată.</p>
+`;
+  
   });
 }
 </script>
