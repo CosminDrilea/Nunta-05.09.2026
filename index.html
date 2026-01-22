@@ -204,6 +204,20 @@ button {
   padding: 12px 24px;
   border-radius: 20px;
 }
+
+/* COUNTDOWN */
+.countdown {
+  margin-top: 30px;
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: #f5f5f0;
+}
+
+.countdown span {
+  display: inline-block;
+  min-width: 90px;
+}
 </style>
 </head>
   
@@ -224,6 +238,7 @@ button {
 pentru a celebra iubirea și începutul<br>
 unei noi povești împreună.</p>
   <div class="data">05 Septembrie 2026<br>Ora 20:00</div>
+  <div id="countdown" class="countdown"></div>
 </section>
 
 <section id="cine">
@@ -380,7 +395,34 @@ function trimiteConfirmarea(e) {
   });
 }
 </script>
+<script>
+const weddingDate = new Date("2026-09-05T20:00:00").getTime();
 
+function updateCountdown() {
+  const now = new Date().getTime();
+  const distance = weddingDate - now;
+
+  if (distance < 0) {
+    document.getElementById("countdown").innerHTML = "Astăzi este ziua noastră ❤️";
+    return;
+  }
+
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  document.getElementById("countdown").innerHTML = `
+    <span>${days} zile</span>
+    <span>${hours} ore</span>
+    <span>${minutes} minute</span>
+    <span>${seconds} secunde</span>
+  `;
+}
+
+updateCountdown();
+setInterval(updateCountdown, 1000);
+</script>
   
 </body>
 </html>
