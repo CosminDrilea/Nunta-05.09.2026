@@ -276,11 +276,7 @@ unei noi povești împreună.</p>
 <section id="confirmare" class="fade">
   <h2>Confirmare prezență</h2>
 
-  <form id="rsvpForm"
-      action="https://docs.google.com/forms/d/e/1FAIpQLSdMmJkKLExM8gpo9Cj29OJH3U36P8CRWoMNSQrpwSRCvCtVTA/formResponse"
-      method="POST"
-      target="hidden_iframe"
-      onsubmit="trimiteConfirmarea(event)">
+  <form id="rsvpForm" onsubmit="trimiteConfirmarea(event)">
     <input type="text" name="nume" id="nume" placeholder="Nume și prenume" required>
 
     <select name="participare" id="participare" required>
@@ -333,7 +329,7 @@ unei noi povești împreună.</p>
 function trimiteConfirmarea(e) {
   e.preventDefault();
 
-  const nume = document.getElementById("nume").value;
+  const nume = document.getElementById("nume").value.trim();
   const participare = document.getElementById("participare").value;
   const persoane = Number(document.getElementById("persoane").value || 0);
   const meniuNormal = Number(document.getElementById("meniu_normal").value || 0);
@@ -342,28 +338,46 @@ function trimiteConfirmarea(e) {
 
   const totalMeniuri = meniuNormal + meniuCopii + meniuVegan;
 
+  if (!nume) {
+    alert("Completați numele.");
+    return;
+  }
+
+  if (participare === "Particip" && totalMeniuri !== persoane) {
+    alert("Numărul de meniuri trebuie să fie egal cu numărul de persoane.");
+    return;
+  }
+
   if (participare === "Nu pot participa" && totalMeniuri > 0) {
     alert("Dacă nu participați, nu selectați meniuri.");
     return;
   }
 
-  if (participare === "Particip" && totalMeniuri !== persoane) {
-    alert("Totalul meniurilor trebuie să fie egal cu numărul de persoane.");
-    return;
-  }
-
-  document.getElementById("rsvpForm").submit();
-
-  localStorage.setItem("rsvpTrimis", "da");
-
-  document.getElementById("rsvpForm").innerHTML = `
-    <h3 style="margin-top:20px;">Vă mulțumim ❤️</h3>
-    <p>Confirmarea a fost înregistrată.</p>
-  `;
+  fetch("https://script.google.com/macros/s/AKfycbymEdD2jpSFrYJYJhWZo1BJYADL-USHEFzZRDd1sUH0nmCRbtlEiIIVl8NnHU8RdYAJ6w/exec", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      nume,
+      participare,
+      persoane,
+      meniu_normal: meniuNormal,
+      meniu_copii: meniuCopii,
+      meniu_vegan: meniuVegan
+    })
+  })
+  .then(() => {
+    localStorage.setItem("rsvpTrimis", "da");
+    document.getElementById("rsvpForm").innerHTML = `
+      <h3 style="margin-top:20px;">Vă mulțumim ❤️</h3>
+      <p>Confirmarea a fost înregistrată.</p>
+    `;
+  })
+  .catch(() => {
+    alert("Eroare la trimitere. Reîncercați.");
+  });
 }
 </script>
 
-<iframe name="hidden_iframe" style="display:none;"></iframe>
   
 </body>
 </html>
