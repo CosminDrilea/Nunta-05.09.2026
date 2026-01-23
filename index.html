@@ -291,8 +291,7 @@ unei noi povești împreună.</p>
 <section id="confirmare" class="fade">
   <h2>Confirmare prezență</h2>
 
-  <form id="rsvpForm" onsubmit="trimiteConfirmarea(event)">
-
+  <form id="rsvpForm">
   <input type="text" id="nume" placeholder="Nume și prenume" required>
 
   <select id="participare" required>
@@ -302,7 +301,7 @@ unei noi povești împreună.</p>
   </select>
 
   <select id="persoane">
-    <option value="">Număr persoane</option>
+    <option value="0">Număr persoane</option>
     <option value="1">1</option>
     <option value="2">2</option>
     <option value="3">3</option>
@@ -344,10 +343,8 @@ unei noi povești împreună.</p>
 </section>
 
 <script>
-function trimiteConfirmarea(e) {
+document.getElementById("rsvpForm").addEventListener("submit", function (e) {
   e.preventDefault();
-
-  const form = document.getElementById("rsvpForm");
 
   const nume = document.getElementById("nume").value.trim();
   const participare = document.getElementById("participare").value;
@@ -356,30 +353,18 @@ function trimiteConfirmarea(e) {
   const meniuCopii = Number(document.getElementById("meniu_copii").value || 0);
   const meniuVegan = Number(document.getElementById("meniu_vegan").value || 0);
 
+  if (!nume) {
+    alert("Completează numele");
+    return;
+  }
+
   const totalMeniuri = meniuNormal + meniuCopii + meniuVegan;
 
-  // VALIDĂRI
-  if (!nume) {
-    alert("Completați numele.");
-    return;
-  }
-
-  if (participare === "Particip" && persoane === 0) {
-    alert("Selectați numărul de persoane.");
-    return;
-  }
-
   if (participare === "Particip" && totalMeniuri !== persoane) {
-    alert("Numărul total de meniuri trebuie să fie egal cu numărul de persoane.");
+    alert("Meniurile trebuie să fie egale cu numărul de persoane");
     return;
   }
 
-  if (participare === "Nu pot participa" && totalMeniuri > 0) {
-    alert("Dacă nu participați, nu selectați meniuri.");
-    return;
-  }
-
-  // TRIMITERE CĂTRE GOOGLE APPS SCRIPT (BLOCARE DUPLICATE DUPĂ NUME)
   fetch("https://script.google.com/macros/s/AKfycbymEdD2jpSFrYJYJhWZo1BJYADL-USHEFzZRDd1sUH0nmCRbtlEiIIVl8NnHU8RdYAJ6w/exec", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -391,22 +376,15 @@ function trimiteConfirmarea(e) {
       meniu_copii: meniuCopii,
       meniu_vegan: meniuVegan
     })
-  })
-  .then(res => res.text())
-  .then(result => {
-    if (result === "EXISTS") {
-      form.innerHTML = `
-        <h3>Mulțumim ❤️</h3>
-        <p>Invitația a fost deja confirmată.</p>
-      `;
-    } else {
-      form.innerHTML = `
-        <h3>Mulțumim ❤️</h3>
-        <p>Confirmarea a fost înregistrată.</p>
-      `;
-    }
   });
-}
+
+  localStorage.setItem("rsvp_confirmat", "da");
+
+  document.getElementById("rsvpForm").innerHTML = `
+    <h3>Mulțumim ❤️</h3>
+    <p>Confirmarea a fost trimisă.</p>
+  `;
+});
 </script>
 <script>
 const weddingDate = new Date("2026-09-05T20:00:00").getTime();
