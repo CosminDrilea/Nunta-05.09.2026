@@ -292,43 +292,46 @@ unei noi povești împreună.</p>
   <h2>Confirmare prezență</h2>
 
   <form id="rsvpForm" onsubmit="trimiteConfirmarea(event)">
-    <input type="text" name="nume" id="nume" placeholder="Nume și prenume" required>
 
-    <select name="participare" id="participare" required>
-      <option value="">Participare</option>
-      <option>Particip</option>
-      <option>Nu pot participa</option>
-    </select>
+  <input type="text" id="nume" placeholder="Nume și prenume" required>
 
-    <select name="persoane" id="persoane" required>
-      <option value="">Număr total persoane</option>
-      <option>1</option><option>2</option><option>3</option><option>4</option>
-    </select>
+  <select id="participare" required>
+    <option value="">Participare</option>
+    <option value="Particip">Particip</option>
+    <option value="Nu pot participa">Nu pot participa</option>
+  </select>
 
-    <select name="meniu_normal" id="meniu_normal">
-  <option value="0">Meniu normal</option>
-  <option value="0">0</option>
-  <option value="1">1</option>
-  <option value="2">2</option>
-</select>
+  <select id="persoane">
+    <option value="">Număr persoane</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+  </select>
 
-    <select name="meniu_vegan" id="meniu_vegan">
-  <option value="0">Meniu vegan</option>
-  <option value="0">0</option>
-  <option value="1">1</option>
-  <option value="2">2</option>
-</select>
+  <select id="meniu_normal">
+    <option value="0">Meniu normal</option>
+    <option value="0">0</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+  </select>
 
-    <select name="meniu_copii" id="meniu_copii">
-  <option value="0">Meniu copii</option>
-  <option value="0">0</option>
-  <option value="1">1</option>
-  <option value="2">2</option>
-</select>
+  <select id="meniu_copii">
+    <option value="0">Meniu copii</option>
+    <option value="0">0</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+  </select>
 
+  <select id="meniu_vegan">
+    <option value="0">Meniu vegan</option>
+    <option value="0">0</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+  </select>
 
-    <button type="submit">Trimite confirmarea</button>
-  </form>
+  <button type="submit">Trimite confirmarea</button>
+</form>
 
   <div class="bg-text">Confirmare până pe data de 20.07.2026</div>
   <div class="special">
@@ -355,14 +358,19 @@ function trimiteConfirmarea(e) {
 
   const totalMeniuri = meniuNormal + meniuCopii + meniuVegan;
 
-  /* VALIDĂRI */
+  // VALIDĂRI
   if (!nume) {
-    alert("Vă rugăm să completați numele.");
+    alert("Completați numele.");
+    return;
+  }
+
+  if (participare === "Particip" && persoane === 0) {
+    alert("Selectați numărul de persoane.");
     return;
   }
 
   if (participare === "Particip" && totalMeniuri !== persoane) {
-    alert("Numărul de meniuri trebuie să fie egal cu numărul de persoane.");
+    alert("Numărul total de meniuri trebuie să fie egal cu numărul de persoane.");
     return;
   }
 
@@ -371,8 +379,8 @@ function trimiteConfirmarea(e) {
     return;
   }
 
-  /* TRIMITERE CĂTRE GOOGLE APPS SCRIPT */
-  fetch("https://script.google.com/macros/s/AKfycbymEdD2jpSFrYJYJhWZo1BJYADL-USHEFzZRDd1sUH0nmCRbtlEiIIVl8NnHU8RdYAJ6w/exec", {
+  // TRIMITERE CĂTRE GOOGLE APPS SCRIPT (BLOCARE DUPLICATE DUPĂ NUME)
+  fetch("URL_SCRIPTUL_TĂU_AICI", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
