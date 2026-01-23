@@ -380,7 +380,7 @@ function trimiteConfirmarea(e) {
   }
 
   // TRIMITERE CĂTRE GOOGLE APPS SCRIPT (BLOCARE DUPLICATE DUPĂ NUME)
-  fetch("URL_SCRIPTUL_TĂU_AICI", {
+  fetch("https://script.google.com/macros/s/AKfycbymEdD2jpSFrYJYJhWZo1BJYADL-USHEFzZRDd1sUH0nmCRbtlEiIIVl8NnHU8RdYAJ6w/exec", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
