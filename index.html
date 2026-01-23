@@ -355,9 +355,9 @@ function trimiteConfirmarea(e) {
 
   const totalMeniuri = meniuNormal + meniuCopii + meniuVegan;
 
-  // VALIDARE
+  /* VALIDĂRI */
   if (!nume) {
-    alert("Completați numele.");
+    alert("Vă rugăm să completați numele.");
     return;
   }
 
@@ -371,18 +371,9 @@ function trimiteConfirmarea(e) {
     return;
   }
 
-  // AFIȘARE MESAJ IMEDIAT
-  form.innerHTML = `
-    <h3 style="margin-top:20px;">Vă mulțumim ❤️</h3>
-    <p>Confirmarea a fost înregistrată.</p>
-  `;
-
-  localStorage.setItem("rsvpTrimis", "da");
-
-  // TRIMITERE CĂTRE GOOGLE SHEETS (BACKGROUND)
+  /* TRIMITERE CĂTRE GOOGLE APPS SCRIPT */
   fetch("https://script.google.com/macros/s/AKfycbymEdD2jpSFrYJYJhWZo1BJYADL-USHEFzZRDd1sUH0nmCRbtlEiIIVl8NnHU8RdYAJ6w/exec", {
     method: "POST",
-    mode: "no-cors",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       nume,
@@ -392,6 +383,20 @@ function trimiteConfirmarea(e) {
       meniu_copii: meniuCopii,
       meniu_vegan: meniuVegan
     })
+  })
+  .then(res => res.text())
+  .then(result => {
+    if (result === "EXISTS") {
+      form.innerHTML = `
+        <h3>Mulțumim ❤️</h3>
+        <p>Invitația a fost deja confirmată.</p>
+      `;
+    } else {
+      form.innerHTML = `
+        <h3>Mulțumim ❤️</h3>
+        <p>Confirmarea a fost înregistrată.</p>
+      `;
+    }
   });
 }
 </script>
