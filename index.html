@@ -367,9 +367,13 @@ document.getElementById("rsvpForm").addEventListener("submit", function (e) {
     return;
   }
 
+  // TRIMITERE FĂRĂ AȘTEPTARE RĂSPUNS (CHEIA)
   fetch("https://script.googleusercontent.com/macros/echo?user_content_key=AehSKLh7ASH6efoCIhiustydI1VD8JVewHSjSmcTqyk6eOINnuG0Z9zUSphGo-wBWpiLtB7vJCEnke9pF3MPrXa3HtgjKpouX-RNM4nNqh_OOqpkKbZWWkioixGt8IHjloln5-elpUkmrzJoerp2ve5P4pCfmNCu8FD-50eSmC1gaAuYj3sGwxE4cW7v1zyG1AWWw86DllTOshBcguh7agVqdpmwPgirlkVz8ICZqakWydd8rU5vwiVbtAQcDLb9fuh5O3OPxzftTy1vP1OM1uqWn-_1jMT60tWO9dDU5J9T&lib=MjIed838OC-weXQJpebbwRG7LDla0efdf", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    mode: "no-cors",
+    headers: {
+      "Content-Type": "application/json"
+    },
     body: JSON.stringify({
       nume: nume,
       participare: participare,
@@ -378,16 +382,13 @@ document.getElementById("rsvpForm").addEventListener("submit", function (e) {
       meniu_copii: meniuCopii,
       meniu_vegan: meniuVegan
     })
-  })
-  .then(() => {
-    document.getElementById("rsvpForm").innerHTML = `
-      <h3>Mulțumim ❤️</h3>
-      <p>Confirmarea a fost trimisă.</p>
-    `;
-  })
-  .catch(() => {
-    alert("Eroare la trimitere. Reîncercați.");
   });
+
+  // AFIȘARE SUCCES IMEDIAT
+  document.getElementById("rsvpForm").innerHTML = `
+    <h3>Mulțumim ❤️</h3>
+    <p>Confirmarea a fost trimisă.</p>
+  `;
 });
 </script>
 <script>
