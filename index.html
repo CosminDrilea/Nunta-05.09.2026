@@ -197,6 +197,14 @@ button {
     </select>
 
     <button type="submit">Trimite confirmarea</button>
+    <div id="avertizare-meniu" style="
+  display:none;
+  margin-top:15px;
+  color:#ffb3b3;
+  font-weight:600;
+">
+  ⚠️ Numărul de persoane trebuie să fie egal cu totalul meniurilor selectate.
+</div>
   </form>
 
   <div class="confirmare-text">
@@ -212,40 +220,99 @@ if (localStorage.getItem("rsvpTrimis")) {
     "<h3>Mulțumim ❤️</h3><p>Confirmarea a fost deja trimisă.</p>";
 }
 
-/* SUBMIT */
+/* SUBMIT CU VALIDARE STRICTĂ */
 document.getElementById("rsvpForm").addEventListener("submit", function(e){
   e.preventDefault();
 
-  const data = {
-    nume: nume.value,
-    participare: participare.value,
-    persoane: persoane.value,
-    meniu_normal: meniu_normal.value,
-    meniu_copii: meniu_copii.value,
-    meniu_vegan: meniu_vegan.value
-  };
+  const nume = document.getElementById("nume").value.trim();
+  const participare = document.getElementById("participare").value;
+  const persoane = Number(document.getElementById("persoane").value || 0);
+  const meniuNormal = Number(document.getElementById("meniu_normal").value || 0);
+  const meniuCopii = Number(document.getElementById("meniu_copii").value || 0);
+  const meniuVegan = Number(document.getElementById("meniu_vegan").value || 0);
 
+  const totalMeniuri = meniuNormal + meniuCopii + meniuVegan;
+
+  /* VALIDĂRI */
+  if (!nume) {
+    alert("Vă rugăm să completați numele.");
+    return;
+  }
+
+  if (!participare) {
+    alert("Vă rugăm să selectați participarea.");
+    return;
+  }
+
+  if (participare === "Nu pot participa") {
+    if (totalMeniuri !== 0 || persoane !== 0) {
+      alert("Dacă nu participați, numărul de persoane și meniurile trebuie să fie 0.");
+      return;
+    }
+  }
+
+  if (participare === "Particip") {
+    if (persoane < 1) {
+      alert("Vă rugăm să selectați numărul de persoane.");
+      return;
+    }
+
+    if (totalMeniuri === 0) {
+      alert("Vă rugăm să selectați meniurile.");
+      return;
+    }
+
+    if (totalMeniuri !== persoane) {
+  avertizareEl.style.display = "block";
+  return;
+}
+  }
+
+  /* TRIMITERE */
   fetch("https://script.google.com/macros/s/AKfycbz8rjo3JpBoddNfbMTjLul1XkUgtgYslZlnDuAAxcD0br1kNPkrqPtSzahxkUfYvO-F9Q/exec", {
     method: "POST",
     mode: "no-cors",
     headers: {"Content-Type": "application/json"},
-    body: JSON.stringify(data)
+    body: JSON.stringify({
+      nume: nume,
+      participare: participare,
+      persoane: persoane,
+      meniu_normal: meniuNormal,
+      meniu_copii: meniuCopii,
+      meniu_vegan: meniuVegan
+    })
   });
 
   localStorage.setItem("rsvpTrimis", "da");
-  rsvpForm.innerHTML = "<h3>Mulțumim ❤️</h3><p>Confirmarea a fost trimisă.</p>";
-});
 
-/* COUNTDOWN */
-const target = new Date("2026-09-05T20:00:00").getTime();
-setInterval(()=>{
-  const d = target - new Date().getTime();
-  if (d <= 0) return countdown.innerHTML = "Astăzi este ziua noastră ❤️";
-  countdown.innerHTML =
-    Math.floor(d/86400000)+" zile "+
-    Math.floor(d%86400000/3600000)+" ore "+
-    Math.floor(d%3600000/60000)+" minute";
-},1000);
+  document.getElementById("rsvpForm").innerHTML =
+    "<h3>Mulțumim ❤️</h3><p>Confirmarea a fost trimisă.</p>";
+});
+</script>
+  <script>
+const persoaneEl = document.getElementById("persoane");
+const meniuNormalEl = document.getElementById("meniu_normal");
+const meniuCopiiEl = document.getElementById("meniu_copii");
+const meniuVeganEl = document.getElementById("meniu_vegan");
+const avertizareEl = document.getElementById("avertizare-meniu");
+
+function verificaMeniuri() {
+  const persoane = Number(persoaneEl.value || 0);
+  const totalMeniuri =
+    Number(meniuNormalEl.value || 0) +
+    Number(meniuCopiiEl.value || 0) +
+    Number(meniuVeganEl.value || 0);
+
+  if (persoane > 0 && totalMeniuri !== persoane) {
+    avertizareEl.style.display = "block";
+  } else {
+    avertizareEl.style.display = "none";
+  }
+}
+
+// ascultăm modificările
+[persoaneEl, meniuNormalEl, meniuCopiiEl, meniuVeganEl]
+  .forEach(el => el.addEventListener("change", verificaMeniuri));
 </script>
 
 </body>
