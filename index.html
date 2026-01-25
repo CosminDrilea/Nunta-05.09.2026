@@ -292,7 +292,6 @@ unei noi povești împreună.</p>
   <h2>Confirmare prezență</h2>
 
  <form id="rsvpForm">
-
   <input type="text" id="nume" placeholder="Nume și prenume" required>
 
   <select id="participare" required>
@@ -344,15 +343,6 @@ unei noi povești împreună.</p>
 </section>
 
 <script>
-document.addEventListener("DOMContentLoaded", () => {
-  if (localStorage.getItem("rsvp_confirmat") === "da") {
-    document.getElementById("rsvpForm").innerHTML = `
-      <h3>Mulțumim ❤️</h3>
-      <p>Invitația a fost deja confirmată.</p>
-    `;
-  }
-});
-
 document.getElementById("rsvpForm").addEventListener("submit", function (e) {
   e.preventDefault();
 
@@ -376,28 +366,22 @@ document.getElementById("rsvpForm").addEventListener("submit", function (e) {
   }
 
   fetch("https://script.google.com/macros/s/AKfycbymEdD2jpSFrYJYJhWZo1BJYADL-USHEFzZRDd1sUH0nmCRbtlEiIIVl8NnHU8RdYAJ6w/exec", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json"
-  },
-  body: JSON.stringify({
-    nume,
-    participare,
-    persoane,
-    meniu_normal: meniuNormal,
-    meniu_copii: meniuCopii,
-    meniu_vegan: meniuVegan
-  })
-})
-.then(() => {
-  localStorage.setItem("rsvp_confirmat", "da");
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      nume,
+      participare,
+      persoane,
+      meniu_normal: meniuNormal,
+      meniu_copii: meniuCopii,
+      meniu_vegan: meniuVegan
+    })
+  });
+
   document.getElementById("rsvpForm").innerHTML = `
     <h3>Mulțumim ❤️</h3>
     <p>Confirmarea a fost trimisă.</p>
   `;
-})
-.catch(() => {
-  alert("Eroare la trimitere. Reîncercați.");
 });
 </script>
 <script>
