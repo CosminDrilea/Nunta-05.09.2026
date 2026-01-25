@@ -376,24 +376,28 @@ document.getElementById("rsvpForm").addEventListener("submit", function (e) {
   }
 
   fetch("https://script.google.com/macros/s/AKfycbymEdD2jpSFrYJYJhWZo1BJYADL-USHEFzZRDd1sUH0nmCRbtlEiIIVl8NnHU8RdYAJ6w/exec", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      nume,
-      participare,
-      persoane,
-      meniu_normal: meniuNormal,
-      meniu_copii: meniuCopii,
-      meniu_vegan: meniuVegan
-    })
-  });
-
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    nume,
+    participare,
+    persoane,
+    meniu_normal: meniuNormal,
+    meniu_copii: meniuCopii,
+    meniu_vegan: meniuVegan
+  })
+})
+.then(() => {
   localStorage.setItem("rsvp_confirmat", "da");
-
   document.getElementById("rsvpForm").innerHTML = `
     <h3>Mulțumim ❤️</h3>
     <p>Confirmarea a fost trimisă.</p>
   `;
+})
+.catch(() => {
+  alert("Eroare la trimitere. Reîncercați.");
 });
 </script>
 <script>
