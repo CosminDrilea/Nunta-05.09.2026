@@ -291,7 +291,8 @@ unei noi povești împreună.</p>
 <section id="confirmare" class="fade">
   <h2>Confirmare prezență</h2>
 
-  <form id="rsvpForm">
+ <form id="rsvpForm">
+
   <input type="text" id="nume" placeholder="Nume și prenume" required>
 
   <select id="participare" required>
@@ -343,6 +344,15 @@ unei noi povești împreună.</p>
 </section>
 
 <script>
+document.addEventListener("DOMContentLoaded", () => {
+  if (localStorage.getItem("rsvp_confirmat") === "da") {
+    document.getElementById("rsvpForm").innerHTML = `
+      <h3>Mulțumim ❤️</h3>
+      <p>Invitația a fost deja confirmată.</p>
+    `;
+  }
+});
+
 document.getElementById("rsvpForm").addEventListener("submit", function (e) {
   e.preventDefault();
 
@@ -353,15 +363,15 @@ document.getElementById("rsvpForm").addEventListener("submit", function (e) {
   const meniuCopii = Number(document.getElementById("meniu_copii").value || 0);
   const meniuVegan = Number(document.getElementById("meniu_vegan").value || 0);
 
+  const totalMeniuri = meniuNormal + meniuCopii + meniuVegan;
+
   if (!nume) {
     alert("Completează numele");
     return;
   }
 
-  const totalMeniuri = meniuNormal + meniuCopii + meniuVegan;
-
   if (participare === "Particip" && totalMeniuri !== persoane) {
-    alert("Meniurile trebuie să fie egale cu numărul de persoane");
+    alert("Numărul de meniuri trebuie să fie egal cu numărul de persoane");
     return;
   }
 
