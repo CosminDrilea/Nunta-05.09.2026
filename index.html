@@ -345,8 +345,10 @@ unei noi povești împreună.</p>
 </section>
 
 <script>
-document.getElementById("rsvpForm").addEventListener("submit", function (e) {
+function trimiteConfirmarea(e) {
   e.preventDefault();
+
+  const form = document.getElementById("rsvpForm");
 
   const nume = document.getElementById("nume").value.trim();
   const participare = document.getElementById("participare").value;
@@ -357,39 +359,45 @@ document.getElementById("rsvpForm").addEventListener("submit", function (e) {
 
   const totalMeniuri = meniuNormal + meniuCopii + meniuVegan;
 
+  // VALIDARE
   if (!nume) {
-    alert("Completează numele");
+    alert("Completați numele.");
     return;
   }
 
   if (participare === "Particip" && totalMeniuri !== persoane) {
-    alert("Numărul de meniuri trebuie să fie egal cu numărul de persoane");
+    alert("Numărul de meniuri trebuie să fie egal cu numărul de persoane.");
     return;
   }
 
-  // TRIMITERE FĂRĂ AȘTEPTARE RĂSPUNS (CHEIA)
-  fetch("https://script.googleusercontent.com/macros/echo?user_content_key=AehSKLh7ASH6efoCIhiustydI1VD8JVewHSjSmcTqyk6eOINnuG0Z9zUSphGo-wBWpiLtB7vJCEnke9pF3MPrXa3HtgjKpouX-RNM4nNqh_OOqpkKbZWWkioixGt8IHjloln5-elpUkmrzJoerp2ve5P4pCfmNCu8FD-50eSmC1gaAuYj3sGwxE4cW7v1zyG1AWWw86DllTOshBcguh7agVqdpmwPgirlkVz8ICZqakWydd8rU5vwiVbtAQcDLb9fuh5O3OPxzftTy1vP1OM1uqWn-_1jMT60tWO9dDU5J9T&lib=MjIed838OC-weXQJpebbwRG7LDla0efdf", {
+  if (participare === "Nu pot participa" && totalMeniuri > 0) {
+    alert("Dacă nu participați, nu selectați meniuri.");
+    return;
+  }
+
+  // AFIȘARE MESAJ IMEDIAT
+  form.innerHTML = `
+    <h3 style="margin-top:20px;">Vă mulțumim ❤️</h3>
+    <p>Confirmarea a fost înregistrată.</p>
+  `;
+
+  localStorage.setItem("rsvpTrimis", "da");
+
+  // TRIMITERE CĂTRE GOOGLE SHEETS (BACKGROUND)
+  fetch("https://script.google.com/macros/s/AKfycbz8rjo3JpBoddNfbMTjLul1XkUgtgYslZlnDuAAxcD0br1kNPkrqPtSzahxkUfYvO-F9Q/exec", {
     method: "POST",
     mode: "no-cors",
-    headers: {
-      "Content-Type": "application/json"
-    },
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
-      nume: nume,
-      participare: participare,
-      persoane: persoane,
+      nume,
+      participare,
+      persoane,
       meniu_normal: meniuNormal,
       meniu_copii: meniuCopii,
       meniu_vegan: meniuVegan
     })
   });
-
-  // AFIȘARE SUCCES IMEDIAT
-  document.getElementById("rsvpForm").innerHTML = `
-    <h3>Mulțumim ❤️</h3>
-    <p>Confirmarea a fost trimisă.</p>
-  `;
-});
+}
 </script>
 <script>
 const weddingDate = new Date("2026-09-05T20:00:00").getTime();
