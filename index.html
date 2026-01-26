@@ -100,81 +100,84 @@ section {
 /* ========== STILURI PENTRU SECTIUNEA CINE ========== */
 
 /* Container */
+/* ===== Ajustări secțiunea CINE (ridicare text și spațiu pentru nași) ===== */
 #cine {
   background: #000;
   color: #fff;
-  padding: 160px 20px 120px; /* păstrează spațiu, ajustează după nevoie */
+  padding: 120px 20px 80px;   /* <--- reduc top padding -> urcă textul */
   text-align: center;
 }
 
-/* INIȚIALE (EA / EL) - font caligrafic, mare */
+/* Inițiale mari EA / EL */
 .cine-decor {
   font-family: 'Great Vibes', cursive;
-  font-size: 72px;      /* mărește dacă vrei mai mare */
-  margin-bottom: 8px;
+  font-size: 72px;
+  margin: 0 0 6px 0;          /* mai puțin spațiu jos, urcă conținutul */
+  letter-spacing: 2px;
   color: #fff;
   text-shadow: 0 3px 10px rgba(0,0,0,0.6);
-  letter-spacing: 2px;
 }
 
-/* NUMELE (OANA / COSMIN) - scris de mână, clar */
+/* Numele (Oana / Cosmin) - scris de mână */
 .cine-block h3 {
-  font-family: 'Dancing Script', cursive;
-  font-size: 36px;     /* măriți aici dacă vrei nume mai mari */
+  font-family: 'Dancing Script', cursive; /* dacă ai importat Dancing Script */
+  font-size: 38px;                        /* poți ajusta (ex: 44px) */
   margin: 6px 0 12px 0;
-  text-transform: uppercase; /* dacă nu vrei uppercase, șterge */
-  letter-spacing: 1.5px;
+  text-transform: none;
   color: #fff;
-  font-weight: 700;
-  text-shadow: 0 2px 6px rgba(0,0,0,0.45);
 }
 
-/* PARAFA/PROPOZIȚII (paragrafe sub nume) - serif elegant, mai mare */
+/* Paragrafele descriptive (textul frumos) */
 #cine .cine-block p {
   font-family: 'Playfair Display', serif;
-  font-size: 20px;      /* crește pentru text mai mare */
+  font-size: 20px;
   line-height: 1.6;
-  color: rgba(255,255,255,0.92);
+  color: rgba(255,255,255,0.95);
   max-width: 820px;
-  margin: 0 auto 30px auto;
-  letter-spacing: 0.2px;
+  margin: 0 auto 18px auto;
 }
 
-/* FAMILIE: etichete (Nașii / Părinții) - clar, bold */
+/* Spațiere între blocuri (ea / el) */
+.cine-block {
+  margin-bottom: 30px;   /* mai compact între EA si EL (reduce spațiul) */
+}
+
+/* Mutăm Nașii & Părinții mai jos: creștem margin-top */
+.familie {
+  margin-top: 70px;      /* <--- crește pentru a împinge nașii mai jos */
+  text-align: center;
+}
+
+/* Stiluri pentru label-uri și nume (poți ajusta font-size) */
 .familie .label {
   display: block;
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
   font-size: 20px;
   color: #fff;
-  margin-top: 18px;
+  margin-top: 10px;
   margin-bottom: 8px;
 }
-
-/* FAMILIE: nume - scris frumos (caligrafic) dar mai mic decât titlul */
 .familie .names {
   font-family: 'Great Vibes', cursive;
   font-size: 28px;
   color: #fff;
-  margin-bottom: 16px;
-  letter-spacing: 0.6px;
+  margin-bottom: 8px;
+  letter-spacing: 0.4px;
 }
 
-/* dacă vrei separare între perechi păstrează așa */
-.familie .names + .names { margin-top: 6px; }
-
-/* Responsive */
+/* Responsive: ajustează pe mobil */
 @media (max-width: 900px) {
+  #cine { padding: 90px 18px 60px; }
   .cine-decor { font-size: 56px; }
-  .cine-block h3 { font-size: 28px; }
-  #cine .cine-block p { font-size: 18px; }
-  .familie .names { font-size: 22px; }
+  .cine-block h3 { font-size: 30px; }
+  .familie { margin-top: 40px; }
 }
 @media (max-width: 480px) {
+  #cine { padding: 70px 12px 50px; }
   .cine-decor { font-size: 44px; }
   .cine-block h3 { font-size: 22px; }
-  #cine .cine-block p { font-size: 16px; }
-  .familie .names { font-size: 18px; }
+  .familie { margin-top: 30px; }
 }
 
 /* UNDE */
