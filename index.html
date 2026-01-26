@@ -143,31 +143,39 @@ section {
 }
 
 /* Mutăm Nașii & Părinții mai jos: creștem margin-top */
+/* ===== Stil unificat pentru toate numele din secțiunea familie ===== */
 .familie {
-  margin-top: 70px;      /* <--- crește pentru a împinge nașii mai jos */
   text-align: center;
 }
 
-/* Stiluri pentru label-uri și nume (poți ajusta font-size) */
+/* Etichetele NAȘII / PĂRINȚII */
 .familie .label {
   display: block;
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
-  font-size: 24px;
+  font-size: 26px;
   color: #fff;
   margin-top: 12px;
-  margin-bottom: 10px;
-  text-transform: none;
-}
-.familie .names {
-  font-family: 'Great Vibes', cursive;
-  font-size: 34px;
-  color: #fff;
-  margin-bottom: 12px;
-  letter-spacing: 0.6px;
-  line-height:1.1;
+  margin-bottom: 8px;
 }
 
+/* NUMELE (toate) — punem aceeași mărime pentru toate liniile */
+.familie .names {
+  display: block;
+  font-family: 'Great Vibes', cursive;
+  font-size: 44px;      /* ← Aici setezi mărimea comună (Andreea & Gabriel) */
+  color: #fff;
+  margin-bottom: 14px;
+  letter-spacing: 0.6px;
+  line-height: 1.05;
+  text-align: center;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.5);
+}
+
+/* dacă vrei mai mult spațiu între label și primul nume: */
+.familie .label + .names {
+  margin-bottom: 20px;
+}
 /* Responsive: ajustează pe mobil */
 @media (max-width: 900px) {
   #cine { padding: 90px 18px 60px; }
