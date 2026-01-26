@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cosmin & Oana – 05.09.2026</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Dancing+Script:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
 html, body {
@@ -40,35 +40,141 @@ section {
   color: #fff;
 }
 
-/* ACASA */
+/* ================= ACASA ================= */
 #acasa {
-  background: linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)),
+  /* mai puțin spațiu sus -> conținutul urcă */
+  padding: 180px 20px 100px;
+  background: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)),
               url("images/acasa.jpg") center/cover no-repeat;
-}
-#acasa h1 {
-  font-family: 'Great Vibes', cursive;
-  font-size: 64px;
-}
-#acasa .data {
-  font-size: 26px;
-  font-weight: 700;
-  margin-top: 20px;
-}
-.countdown {
-  margin-top: 30px;
-  font-size: 24px;
+  color: #f5f5f0; /* alb murdar */
+  text-align: center;
 }
 
-/* CINE */
+/* TITLU (Cosmin & Oana) - mai mare și poziționat mai sus */
+#acasa h1 {
+  font-family: 'Great Vibes', cursive;
+  font-size: 96px;        /* mărește dacă vrei și mai mare: 110px */
+  margin: 0 0 6px 0;      /* eliminăm spațiul mare dintre titlu și text */
+  line-height: 1;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.45);
+}
+
+/* TEXTUL DE SUB TITLU - scris „de mână” și mai mare */
+#acasa p {
+  font-family: 'Dancing Script', 'Great Vibes', cursive; /* manuscris */
+  font-size: 26px;          /* mai mare */
+  margin: 6px 0 18px 0;
+  line-height: 1.4;
+  color: rgba(245,245,240,0.95);
+  text-shadow: 0 1px 4px rgba(0,0,0,0.35);
+}
+
+/* DATA și ORA - coborâte puțin și cu font mai mare */
+#acasa .data {
+  font-size: 34px;
+  font-weight: 700; /* data ingrosata */
+  margin-top: 48px; /* mută data mai jos față de textul de sus */
+  line-height: 1.1;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.4);
+}
+
+/* Numărătoare inversă (countdown) - puțin mai jos în secțiune */
+.countdown, #countdown {
+  margin-top: 90px; /* mută countdown mai jos */
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #f5f5f0;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.35);
+}
+
+/* responsive: reducere fonturi pe ecrane mici */
+@media (max-width: 700px) {
+  #acasa { padding-top: 120px; }
+  #acasa h1 { font-size: 56px; }
+  #acasa p { font-size: 18px; }
+  #acasa .data { font-size: 22px; margin-top: 30px; }
+  .countdown { font-size: 18px; margin-top: 40px; }
+}
+/* ========== STILURI PENTRU SECTIUNEA CINE ========== */
+
+/* Container */
 #cine {
   background: #000;
+  color: #fff;
+  padding: 160px 20px 120px; /* păstrează spațiu, ajustează după nevoie */
+  text-align: center;
 }
+
+/* INIȚIALE (EA / EL) - font caligrafic, mare */
 .cine-decor {
   font-family: 'Great Vibes', cursive;
-  font-size: 48px;
+  font-size: 72px;      /* mărește dacă vrei mai mare */
+  margin-bottom: 8px;
+  color: #fff;
+  text-shadow: 0 3px 10px rgba(0,0,0,0.6);
+  letter-spacing: 2px;
 }
-.cine-block {
-  margin-bottom: 50px;
+
+/* NUMELE (OANA / COSMIN) - scris de mână, clar */
+.cine-block h3 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 36px;     /* măriți aici dacă vrei nume mai mari */
+  margin: 6px 0 12px 0;
+  text-transform: uppercase; /* dacă nu vrei uppercase, șterge */
+  letter-spacing: 1.5px;
+  color: #fff;
+  font-weight: 700;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.45);
+}
+
+/* PARAFA/PROPOZIȚII (paragrafe sub nume) - serif elegant, mai mare */
+#cine .cine-block p {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;      /* crește pentru text mai mare */
+  line-height: 1.6;
+  color: rgba(255,255,255,0.92);
+  max-width: 820px;
+  margin: 0 auto 30px auto;
+  letter-spacing: 0.2px;
+}
+
+/* FAMILIE: etichete (Nașii / Părinții) - clar, bold */
+.familie .label {
+  display: block;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  color: #fff;
+  margin-top: 18px;
+  margin-bottom: 8px;
+}
+
+/* FAMILIE: nume - scris frumos (caligrafic) dar mai mic decât titlul */
+.familie .names {
+  font-family: 'Great Vibes', cursive;
+  font-size: 28px;
+  color: #fff;
+  margin-bottom: 16px;
+  letter-spacing: 0.6px;
+}
+
+/* dacă vrei separare între perechi păstrează așa */
+.familie .names + .names { margin-top: 6px; }
+
+/* Responsive */
+@media (max-width: 900px) {
+  .cine-decor { font-size: 56px; }
+  .cine-block h3 { font-size: 28px; }
+  #cine .cine-block p { font-size: 18px; }
+  .familie .names { font-size: 22px; }
+}
+@media (max-width: 480px) {
+  .cine-decor { font-size: 44px; }
+  .cine-block h3 { font-size: 22px; }
+  #cine .cine-block p { font-size: 16px; }
+  .familie .names { font-size: 18px; }
 }
 
 /* UNDE */
@@ -147,17 +253,31 @@ unei noi povești împreună.
 <section id="cine">
   <div class="cine-block">
     <div class="cine-decor">EA</div>
-    <p>OANA – Dragostea noastră este ca un roman nescris,<br>  
-        iar astăzi începem primul capitol împreună.</p>
+    <h3>Oana</h3>
+    <p>
+      Dragostea noastră este ca un roman nescris,<br>
+      iar astăzi începem primul capitol împreună.
+    </p>
   </div>
+
   <div class="cine-block">
     <div class="cine-decor">EL</div>
-    <p>COSMIN – Astăzi nu marcăm doar o zi,<br>
-        ci începutul unei călătorii care ne va umple viețile<br>
-        cu iubire și fericire.</p>
+    <h3>Cosmin</h3>
+    <p>
+      Astăzi nu marcăm doar o zi,<br>
+      ci începutul unei călătorii care ne va umple viețile<br>
+      cu iubire și fericire.
+    </p>
   </div>
-  <p><strong>Nașii:</strong> Andreea & Gabriel</p>
-  <p><strong>Părinții:</strong> Firița & Ionică • Nadia & Ion</p>
+
+  <div class="familie">
+    <span class="label">Nașii</span>
+    <div class="names">Andreea &amp; Gabriel Mazăre</div>
+
+    <span class="label">Părinții</span>
+    <div class="names">Firița &amp; Ionică</div>
+    <div class="names">Nadia &amp; Ion</div>
+  </div>
 </section>
 
 <section id="unde">
@@ -254,7 +374,8 @@ setInterval(()=>{
   countdown.innerHTML =
     Math.floor(d/86400000)+" zile "+
     Math.floor(d%86400000/3600000)+" ore "+
-    Math.floor(d%3600000/60000)+" minute";
+    Math.floor(d%3600000/60000)+" minute"+
+    Math.floor(d%60000/1000)+" secunde";
 },1000);
 </script>
 
