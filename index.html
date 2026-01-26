@@ -233,6 +233,48 @@ button {
   font-size: 20px;
   font-weight: 700;
 }
+ /* === Stiluri pentru Nașii / Părinți (pune-le la finalul <style>) === */
+
+.familie {
+  text-align: center;
+  /* dacă vrei să muți tot blocul mai jos/ sus, ajustează margin-top aici */
+  /* margin-top: 70px;  deja ai ceva; schimbă dacă vrei */
+}
+
+/* eticheta "Nașii" / "Părinții" */
+.familie .label {
+  display: block;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 26px;      /* mărimea label-ului (NAȘII / PĂRINȚII) */
+  color: #fff;
+  margin-top: 12px;
+  margin-bottom: 8px;
+}
+
+/* NUMELE pentru Nașii - facem mai mare */
+.familie .names {
+  display: block;
+  font-family: 'Great Vibes', cursive;
+  font-size: 44px;      /* <--- schimbă aici dacă vrei mai mare / mai mic */
+  color: #fff;
+  margin-bottom: 14px;
+  letter-spacing: 0.6px;
+  line-height: 1.05;
+  text-align: center;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.5);
+}
+
+/* NUMELE pentru Părinți (puțin mai mici decât nașii) */
+.familie > .names + .names,
+.familie .parintii .names {
+  font-size: 34px;      /* mai mic pentru părinți */
+}
+
+/* Dacă vrei Nașii cu spațiu mai mare dedesubt (împinge restul conținutului mai jos): */
+.familie .label + .names {
+  margin-bottom: 20px;
+}
 </style>
 </head>
 
