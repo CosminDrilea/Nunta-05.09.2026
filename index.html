@@ -102,7 +102,9 @@ section {
 /* Container */
 /* ===== Ajustări secțiunea CINE (ridicare text și spațiu pentru nași) ===== */
 #cine {
-  background: #000;
+  background:
+  linear-gradient (rgba(0,0,0,0.75), rgba(0,0,0,0.75)),
+  url ("images/cine.jpg") center/cover no-repeat;
   color: #fff;
   padding: 80px 20px 80px;   /* <--- reduc top padding -> urcă textul */
   text-align: center;
@@ -136,6 +138,9 @@ section {
   max-width: 820px;
   margin: 0 auto 18px auto;
 }
+  #cine .cine-container {
+    padding-top: 40px;
+  }
 
 /* Spațiere între blocuri (ea / el) */
 .cine-block {
