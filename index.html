@@ -105,10 +105,16 @@ section {
 /* ===== Ajustări secțiunea CINE (ridicare text și spațiu pentru nași) ===== */
 /* ===== Ajustări secțiunea CINE (ridicare text și spațiu pentru nași) ===== */
 #cine {
-  background: #000;
+  background-image:
+    /* Overlay negru semi-transparent */
+    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    /* Imaginea de fundal */
+    url("images/cine.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
   color: #fff;
-  padding: 120px 20px 80px;   /* <--- reduc top padding -> urcă textul */
-  text-align: center;
+  /* Păstrează padding-ul, spațierea și fonturile existente */
 }
 
 /* Inițiale mari EA / EL */
