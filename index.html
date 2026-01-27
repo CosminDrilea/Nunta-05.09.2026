@@ -101,13 +101,12 @@ section {
 
 /* Container */
 /* ===== Ajustări secțiunea CINE (ridicare text și spațiu pentru nași) ===== */
-  #cine {
-  background:
-    linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)),
-    url("images/cine.jpg") center / cover no-repeat;
+ /* ===== Ajustări secțiunea CINE (ridicare text și spațiu pentru nași) ===== */
+#cine {
+  background: #000;
   color: #fff;
-}
-  
+  padding: 120px 20px 80px;   /* <--- reduc top padding -> urcă textul */
+  text-align: center;
 }
 
 /* Inițiale mari EA / EL */
@@ -138,9 +137,6 @@ section {
   max-width: 820px;
   margin: 0 auto 18px auto;
 }
-  #cine .cine-container {
-    padding-top: 40px;
-  }
 
 /* Spațiere între blocuri (ea / el) */
 .cine-block {
@@ -148,39 +144,29 @@ section {
 }
 
 /* Mutăm Nașii & Părinții mai jos: creștem margin-top */
-/* ===== Stil unificat pentru toate numele din secțiunea familie ===== */
 .familie {
+  margin-top: 70px;      /* <--- crește pentru a împinge nașii mai jos */
   text-align: center;
 }
 
-/* Etichetele NAȘII / PĂRINȚII */
+/* Stiluri pentru label-uri și nume (poți ajusta font-size) */
 .familie .label {
   display: block;
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
-  font-size: 26px;
+  font-size: 20px;
   color: #fff;
-  margin-top: 12px;
+  margin-top: 10px;
   margin-bottom: 8px;
 }
-
-/* NUMELE (toate) — punem aceeași mărime pentru toate liniile */
 .familie .names {
-  display: block;
   font-family: 'Great Vibes', cursive;
-  font-size: 44px;      /* ← Aici setezi mărimea comună (Andreea & Gabriel) */
+  font-size: 28px;
   color: #fff;
-  margin-bottom: 14px;
-  letter-spacing: 0.6px;
-  line-height: 1.05;
-  text-align: center;
-  text-shadow: 0 2px 6px rgba(0,0,0,0.5);
+  margin-bottom: 8px;
+  letter-spacing: 0.4px;
 }
 
-/* dacă vrei mai mult spațiu între label și primul nume: */
-.familie .label + .names {
-  margin-bottom: 20px;
-}
 /* Responsive: ajustează pe mobil */
 @media (max-width: 900px) {
   #cine { padding: 90px 18px 60px; }
