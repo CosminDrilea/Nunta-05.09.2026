@@ -425,43 +425,8 @@ if (localStorage.getItem("rsvpTrimis")) {
 
 /* SUBMIT */
 document.getElementById("rsvpForm").addEventListener("submit", function(e){
-
-// blocăm trimiterea până validăm
+  e.preventDefault(); 
   
-  e.preventDefault(); // blocăm trimiterea până validăm
-  const persoane = parseInt(document.getElementById("persoane").value) || 0;
-  const meniuNormal = parseInt(document.getElementById("meniu-normal").value) || 0;
-  const meniuCopii = parseInt(document.getElementById("meniu-copii").value) || 0;
-  const meniuVegan = parseInt(document.getElementById("meniu-vegan").value) || 0;
-
-  const totalMeniuri = meniuNormal + meniuCopii + meniuVegan;
-
-  const errorBox = document.getElementById("form-error");
-
-  // RESET mesaj
-  errorBox.style.display = "none";
-  errorBox.innerText = "";
-
-  // ❌ NU există meniuri selectate
-  if (totalMeniuri === 0) {
-    errorBox.innerText =
-      "Numărul de meniuri trebuie să fie egal cu numărul de persoane. Vă rugăm să selectați tipul de meniu.";
-    errorBox.style.display = "block";
-    return;
-  }
-
-  // ❌ Meniuri ≠ persoane
-  if (totalMeniuri !== persoane) {
-    errorBox.innerText =
-      "Numărul de meniuri trebuie să fie egal cu numărul de persoane.";
-    errorBox.style.display = "block";
-    return;
-  }
-  this.submit();
-});
-
-  
-
   const data = {
     nume: nume.value,
     participare: participare.value,
