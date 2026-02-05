@@ -371,6 +371,11 @@ unei noi povești împreună.
 
 <section id="confirmare">
   <h2>Confirmare prezență</h2>
+  
+<div id="error" style="color: red; margin-bottom: 10px;"></div> /* asta am adaugat, pot sterge */
+<form id="rsvpForm">
+  <!-- restul câmpurilor și butonul -->
+</form>                     /* asta am adaugat, pot sterge */
 
   <form id="rsvpForm">
     <input id="nume" placeholder="Nume și prenume" required>
@@ -427,6 +432,36 @@ if (localStorage.getItem("rsvpTrimis")) {
 document.getElementById("rsvpForm").addEventListener("submit", function(e){
   e.preventDefault(); 
 
+
+
+
+
+
+  
+
+ // Obținem elementul pentru afișare erori și îl curățăm
+  const errorEl = document.getElementById("error");
+  errorEl.innerText = "";
+
+  // Citim valorile selectate (parseInt pentru a obține numere)
+  const numPers = parseInt(persoane.value);
+  const menuNormal = parseInt(meniu_normal.value);
+  const menuCopii  = parseInt(meniu_copii.value);
+  const menuVegan  = parseInt(meniu_vegan.value);
+
+  // 1) Verificăm dacă s-a selectat numărul de persoane
+  if (numPers === 0) {
+    errorEl.innerText = "Vă rugăm să selectați numărul de persoane.";
+    return;  // oprim trimiterea
+  }
+  // 2) Verificăm dacă suma meniurilor este egală cu numărul de persoane
+  const totalMenus = menuNormal + menuCopii + menuVegan;
+  if (totalMenus !== numPers) {
+    errorEl.innerText = "Vă rugăm să selectați tipul de meniu.";
+    return;  // oprim trimiterea
+  }
+
+  // Dacă totul e valid, continuăm cu trimiterea datelor
   const data = {
     nume: nume.value,
     participare: participare.value,
@@ -435,6 +470,19 @@ document.getElementById("rsvpForm").addEventListener("submit", function(e){
     meniu_copii: meniu_copii.value,
     meniu_vegan: meniu_vegan.value
   };
+  fetch("https://script.google.com/macros/s/.../exec", {
+    method: "POST",
+    mode: "no-cors",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify(data)
+  });
+  localStorage.setItem("rsvpTrimis", "da");
+  rsvpForm.innerHTML = "<h3>Mulțumim ❤️</h3><p>Confirmarea a fost trimisă.</p>";
+});
+
+
+
+  
 
   fetch("https://script.google.com/macros/s/AKfycbxeiVNPp-AzzJN1yzJb5iZgms_w9N2hpnitYSVHMdwOuU1i4YsOE76rUyFpTYxM0A_wRw/exec", {
     method: "POST",
