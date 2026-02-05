@@ -314,32 +314,103 @@ button {
 
 
 
-/* ================= RESPONSIVE IMAGINI – TELEFON ================= */
-@media (max-width: 768px) {
 
-  /* TOATE secțiunile cu imagini */
-  #acasa,
-  #cine,
-  #unde,
-  #confirmare {
-    background-size: contain;      /* AICI e cheia */
+
+
+
+
+
+
+
+
+  
+
+/* === FIX RESPONSIVE IMAGINI + SPAȚIERE PENTRU MOBIL === */
+/* Pune acest bloc la finalul <style> */
+
+nav {
+  /* mai puțin înălțime vizuală pe mobil */
+  padding: 10px 0;
+}
+
+/* Reduce padding general pentru secțiuni pe ecrane mici */
+@media (max-width: 900px) {
+  section {
+    padding: 90px 16px 60px; /* mai puțin spațiu sus */
+    min-height: auto;
+  }
+
+  /* ACASĂ - mai puțin top padding, imagine poziționată spre top */
+  #acasa {
+    padding: 110px 16px 60px;   /* ajustează dacă vrei mai sus/jos */
     background-position: center top;
-    background-repeat: no-repeat;
-    min-height: 100vh;
+    background-size: cover;
+    min-height: 60vh;           /* păstrează o înălțime rezonabilă */
   }
 
-  /* Adăugăm puțin fundal negru ca să nu rămână alb */
-  #acasa::after,
-  #cine::after,
-  #unde::after,
-  #confirmare::after {
-    content: "";
-    display: block;
-    height: 120px;
+  /* CINE - să nu împingă conținutul prea jos */
+  #cine {
+    padding: 80px 16px 50px;
+    background-position: center top;
+    background-size: cover;
+    min-height: auto;
   }
+
+  /* UNDE / CONFIRMARE */
+  #unde, #confirmare {
+    padding: 80px 16px 50px;
+    background-position: center top;
+    background-size: cover;
+    min-height: auto;
+  }
+
+  /* Titluri mai mici, ca să încapă frumos */
+  #acasa h1 { font-size: 56px; }
+  #cine .cine-decor { font-size: 56px; }
+  #cine .cine-block h3 { font-size: 30px; }
+  #unde h2 { font-size: 42px; margin-top: -30px; }
+
+  /* butoane și text */
+  .locatie-btn { font-size: 16px; padding: 12px 26px; }
+}
+
+/* Pentru ecrane foarte mici (telefoane) */
+@media (max-width: 480px) {
+  section { padding: 70px 12px 50px; }
+  #acasa { padding: 90px 12px 50px; min-height: 55vh; }
+  #cine { padding: 60px 12px 40px; }
+  #unde, #confirmare { padding: 60px 12px 40px; }
+
+  /* titluri mobile */
+  #acasa h1 { font-size: 42px; }
+  #cine .cine-decor { font-size: 44px; }
+  #cine .cine-block h3 { font-size: 22px; }
+  #unde h2 { font-size: 34px; margin-top: -20px; }
+
+  /* Asigură că imaginea nu este decupată ci arată bine */
+  #acasa, #cine, #unde, #confirmare {
+    background-position: center top;
+    background-size: cover; /* keep cover for full-bleed look */
+  }
+
+  /* Dacă vrei ca imaginea să se vadă complet (fără decupare), folosește contain:
+     background-size: contain; background-repeat: no-repeat; background-position: top center;
+     dar asta poate lăsa spațiu gri în lateral sau jos. */
+}
+
+/* OPȚIUNE: folosește o imagine optimizată pentru mobil (recomandat)
+   -- încarci images/acasa-mobile.jpg și images/cine-mobile.jpg etc.
+   -- de comentat/activat doar dacă încarci imaginile respective */
+@media (max-width: 480px) {
+  #acasa { background-image: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url("images/acasa-mobile.jpg"); }
+  #cine  { background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url("images/cine-mobile.jpg"); }
+  #unde  { background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url("images/confirmare-mobile.jpg"); }
+  #confirmare { background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url("images/unde-mobile.jpg"); }
 }
 
 
+
+  
 
 
 
