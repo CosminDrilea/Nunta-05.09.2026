@@ -423,18 +423,115 @@ if (localStorage.getItem("rsvpTrimis")) {
     "<h3>Mulțumim ❤️</h3><p>Confirmarea a fost deja trimisă.</p>";
 }
 
-/* SUBMIT */
-document.getElementById("rsvpForm").addEventListener("submit", function(e){
-  e.preventDefault(); 
 
+
+
+
+
+
+
+
+
+
+  
+
+
+/* MESAJ EROARE (creat o singură dată) */
+let errorBox = document.createElement("div");
+errorBox.id = "formError";
+errorBox.style.color = "#7a1d1d";
+errorBox.style.background = "#fdeaea";
+errorBox.style.border = "1px solid #e0b4b4";
+errorBox.style.padding = "12px";
+errorBox.style.borderRadius = "10px";
+errorBox.style.fontWeight = "700";
+errorBox.style.marginBottom = "15px";
+errorBox.style.display = "none";
+
+const form = document.getElementById("rsvpForm");
+form.parentNode.insertBefore(errorBox, form);
+
+/* SUBMIT */
+form.addEventListener("submit", function(e){
+  e.preventDefault();
+
+  // reset eroare
+  errorBox.style.display = "none";
+  errorBox.innerText = "";
+
+  const persoaneVal = parseInt(document.getElementById("persoane").value, 10);
+  const normalVal  = parseInt(document.getElementById("meniu_normal").value, 10);
+  const copiiVal   = parseInt(document.getElementById("meniu_copii").value, 10);
+  const veganVal   = parseInt(document.getElementById("meniu_vegan").value, 10);
+
+  const totalMeniuri = normalVal + copiiVal + veganVal;
+
+  /* VALIDARE 1: persoane */
+  if (!persoaneVal || persoaneVal === 0) {
+    errorBox.innerText = "Vă rugăm să selectați numărul de persoane.";
+    errorBox.style.display = "block";
+    document.getElementById("persoane").focus();
+    return;
+  }
+
+  /* VALIDARE 2: meniuri lipsă */
+  if (totalMeniuri === 0) {
+    errorBox.innerText =
+      "Numărul de meniuri trebuie să fie egal cu numărul de persoane. Vă rugăm să selectați tipul de meniu.";
+    errorBox.style.display = "block";
+    document.getElementById("meniu_normal").focus();
+    return;
+  }
+
+  /* VALIDARE 3: meniuri ≠ persoane */
+  if (totalMeniuri !== persoaneVal) {
+    errorBox.innerText =
+      "Numărul de meniuri trebuie să fie egal cu numărul de persoane. Vă rugăm să selectați tipul de meniu.";
+    errorBox.style.display = "block";
+    document.getElementById("meniu_normal").focus();
+    return;
+  }
+
+  /* TOTUL E OK → TRIMITERE */
   const data = {
-    nume: nume.value,
-    participare: participare.value,
-    persoane: persoane.value,
-    meniu_normal: meniu_normal.value,
-    meniu_copii: meniu_copii.value,
-    meniu_vegan: meniu_vegan.value
+    nume: document.getElementById("nume").value,
+    participare: document.getElementById("participare").value,
+    persoane: persoaneVal,
+    meniu_normal: normalVal,
+    meniu_copii: copiiVal,
+    meniu_vegan: veganVal
   };
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
   
   fetch("https://script.google.com/macros/s/AKfycbxeiVNPp-AzzJN1yzJb5iZgms_w9N2hpnitYSVHMdwOuU1i4YsOE76rUyFpTYxM0A_wRw/exec", {
     method: "POST",
