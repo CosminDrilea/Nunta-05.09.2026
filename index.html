@@ -310,6 +310,40 @@ button {
 .familie .label + .names {
   margin-bottom: 34px;
 }
+
+
+
+
+/* ================= RESPONSIVE IMAGINI – TELEFON ================= */
+@media (max-width: 768px) {
+
+  /* TOATE secțiunile cu imagini */
+  #acasa,
+  #cine,
+  #unde,
+  #confirmare {
+    background-size: contain;      /* AICI e cheia */
+    background-position: center top;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+  }
+
+  /* Adăugăm puțin fundal negru ca să nu rămână alb */
+  #acasa::after,
+  #cine::after,
+  #unde::after,
+  #confirmare::after {
+    content: "";
+    display: block;
+    height: 120px;
+  }
+}
+
+
+
+
+
+  
 </style>
 </head>
 
