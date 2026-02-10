@@ -329,6 +329,26 @@ button {
   margin-bottom: 34px;
 }
 
+
+/* ascundere eleganta */
+  
+  #detaliiParticipare {
+    transition: all 0.3s ease;
+  }
+  .hidden{
+    display: none;
+  }
+  /* ascundere eleganta */
+
+/* nivel wow */
+  
+  #unde strong {
+    display: block;
+    dont-size: 26px;
+    margin-bottom: 6px;
+  }
+
+
   
 </style>
 </head>
@@ -384,8 +404,13 @@ unei noi povești împreună.
 
 <section id="unde">
   <h2>Evenimentele noastre</h2>
-  <br><br><br><p>Biserica –„Nașterea Sfântului Ioan Botezătorul” Focşani</p><br><br>
-  <br><br><br><p style="margin-top:40px;">Pensiunea Sara Focșani</p><br><br>
+  <br><br><br><p>
+    <strong>⛪ Cununia religioasă</strong><br>Biserica „Nașterea Sfântului Ioan Botezătorul” Focşani
+  </p><br><br>
+  <br><br><br><p style="margin-top:40px;">
+    <strong>🥂 Petrecerea</strong><br>Pensiunea Sara<br>Focșani
+  </p>
+  <br><br>
   <a class="locatie-btn" href="https://www.google.com/maps/place/Pensiunea+Sara/@45.6810143,27.1843426,14z/data=!4m26!1m15!4m14!1m6!1m2!1s0x40b41f48cd217b2f:0xa88c49d2e322fe92!2sPensiunea+Sara,+B-dul+Brailei,+Foc%C8%99ani!2m2!1d27.2062589!2d45.6810088!1m6!1m2!1s0x40b57372786254b5:0x5f889f0e35e249fd!2sdobnar,+C%C4%83prioarei+35,+Bac%C4%83u+607263!2m2!1d26.8659438!2d46.4666237!3m9!1s0x40b41f48cd217b2f:0xa88c49d2e322fe92!5m3!1s2026-01-19!4m1!1i2!8m2!3d45.6809828!4d27.2062253!16s%2Fg%2F12qgzw284?entry=ttu&g_ep=EgoyMDI2MDExMy4wIKXMDSoASAFQAw%3D%3D" target="_blank">Vezi pe hartă</a>
 </section>
 
@@ -394,7 +419,7 @@ unei noi povești împreună.
   
   <form id="rsvpForm">
     <input id="nume" placeholder="Nume și prenume" required>
-
+<div id="detaliiParticipare">
     <select id="participare" required>
       <option value="">Participare</option>
       <option value="Particip">Particip</option>
@@ -421,7 +446,9 @@ unei noi povești împreună.
       <option value="0">Meniu vegan</option>
       <option value="0">0</option><option value="1">1</option><option value="2">2</option>
     </select>
+</div>
 
+    
     <button type="submit">Trimite confirmarea</button>
   </form>
 
@@ -444,7 +471,19 @@ if (localStorage.getItem("rsvpTrimis")) {
 }
 
 
+/* ascundere eleganta */
+const participareSelect = document.getElementById("participare");
+const detalii = document.getElementById("detaliiParticipare");
 
+ participareSelect.addEventListener("change", () => {
+   if (participareSelect.value === "Nu pot participa") {
+     detalii.classList.add("hidden");
+   } else {
+     detalii.classList.remove("hidden")
+   }
+ }); 
+
+  /* ascundere eleganta */
 
 
 
