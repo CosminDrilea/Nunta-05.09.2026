@@ -340,13 +340,7 @@ button {
   }
   /* ascundere eleganta */
 
-/* nivel wow */
-  
-  #unde strong {
-    display: block;
-    dont-size: 26px;
-    margin-bottom: 6px;
-  }
+
 
 
   
@@ -419,13 +413,12 @@ unei noi povești împreună.
   
   <form id="rsvpForm">
     <input id="nume" placeholder="Nume și prenume" required>
-<div id="detaliiParticipare">
-    <select id="participare" required>
+     <select id="participare" required>
       <option value="">Participare</option>
       <option value="Particip">Particip</option>
       <option value="Nu pot participa">Nu pot participa</option>
     </select>
-
+<div id="detaliiParticipare">
     <select id="persoane">
       <option value="0">Număr persoane</option>
       <option value="1">1</option><option value="2">2</option>
@@ -477,9 +470,9 @@ const detalii = document.getElementById("detaliiParticipare");
 
  participareSelect.addEventListener("change", () => {
    if (participareSelect.value === "Nu pot participa") {
-     detalii.classList.add("hidden");
+     detalii.classList.add("none");
    } else {
-     detalii.classList.remove("hidden")
+     detalii.classList.remove("block")
    }
  }); 
 
