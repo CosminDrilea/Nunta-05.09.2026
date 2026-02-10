@@ -464,22 +464,28 @@ if (localStorage.getItem("rsvpTrimis")) {
 }
 
 
-/* ascundere eleganta */
+// CONTROL PARTICIPARE – VARIANTA FINALĂ
 const participareSelect = document.getElementById("participare");
 const detalii = document.getElementById("detaliiParticipare");
+const mesajDans = document.getElementById("mesajDans");
 
- participareSelect.addEventListener("change", () => {
-   if (participareSelect.value === "Nu pot participa") {
-     detalii.classList.add("hidden");
-     mesajDans.style.display = "none"
-   } 
-    if (participareSelect.value === "Particip) { 
-     detalii.classList.remove("hidden");
-     mesaj.Dans.style.display ="block";
-   }
- }); 
+function updateUI() {
+  const val = participareSelect.value;
 
-  /* ascundere eleganta */
+  if (val === "particip") {
+    detalii.style.display = "block";
+    mesajDans.style.display = "block";
+  } else {
+    detalii.style.display = "none";
+    mesajDans.style.display = "none";
+  }
+}
+
+// stare inițială (IMPORTANT)
+updateUI();
+
+// reacție la schimbare
+participareSelect.addEventListener("change", updateUI);
 
 
 
