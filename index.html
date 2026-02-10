@@ -415,8 +415,8 @@ unei noi povești împreună.
     <input id="nume" placeholder="Nume și prenume" required>
      <select id="participare" required>
       <option value="">Participare</option>
-      <option value="particip">Particip</option>
-      <option value="nu">Nu pot participa</option>
+      <option value="Particip">Particip</option>
+      <option value="Nu pot participa">Nu pot participa</option>
     </select>
 <div id="detaliiParticipare">
     <select id="persoane">
@@ -469,26 +469,14 @@ if (localStorage.getItem("rsvpTrimis")) {
 // CONTROL PARTICIPARE – VARIANTA FINALĂ
 const participareSelect = document.getElementById("participare");
 const detalii = document.getElementById("detaliiParticipare");
-const mesajDans = document.getElementById("mesajDans");
 
-function updateUI() {
-  const val = participareSelect.value;
-
-  if (val === "particip") {
-    detalii.style.display = "";
-    mesajDans.style.display = "";
-  } else {
-    detalii.style.display = "none";
-    mesajDans.style.display = "none";
-  }
-}
-
-// stare inițială (IMPORTANT)
-updateUI();
-
-// reacție la schimbare
-participareSelect.addEventListener("change", updateUI);
-
+  participareSelect.addEventListener("change", () => {
+    if (participareSelect.value === "Nu pot participa") {
+      detalii.style.display = "none";
+    } else {
+      detalii.style.display = "block"; 
+    }
+  });
 
 
 
