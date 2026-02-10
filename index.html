@@ -470,9 +470,9 @@ const detalii = document.getElementById("detaliiParticipare");
 
  participareSelect.addEventListener("change", () => {
    if (participareSelect.value === "Nu pot participa") {
-     detalii.classList.add("none");
+     detalii.classList.add("hidden");
    } else {
-     detalii.classList.remove("block")
+     detalii.classList.remove("hidden")
    }
  }); 
 
