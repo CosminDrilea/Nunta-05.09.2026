@@ -249,15 +249,17 @@ form {
 }
 input, select {
   width: 100%;
-  padding: 14px;
+  padding: 0 14px; /* padding doar lateral */
   margin-bottom: 15px;
   border-radius: 10px;
   border: none;
+  height: 52px; /* cheia */
 
 font-size: 16px; /* opreste zoom ul pe mobil */
-line-height: 1.4;
-  
+line-height: 52px; /*aliniaza textul perfect */
+box-sizing: border-box;
 }
+  
 button {
   width: 100%;
   padding: 14px;
