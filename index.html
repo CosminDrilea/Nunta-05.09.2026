@@ -472,9 +472,10 @@ const detalii = document.getElementById("detaliiParticipare");
    if (participareSelect.value === "Nu pot participa") {
      detalii.classList.add("hidden");
      mesajDans.style.display = "none"
-   } else {
-     detalii.classList.remove("hidden")
-     mesaj.Dans.style.display ="block"
+   } 
+    if (participareSelect.value === "Particip) { 
+     detalii.classList.remove("hidden");
+     mesaj.Dans.style.display ="block";
    }
  }); 
 
