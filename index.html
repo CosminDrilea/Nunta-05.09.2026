@@ -511,6 +511,36 @@ form.addEventListener("submit", function(e){
   errorBox.style.display = "none";
   errorBox.innerText = "";
 
+
+
+
+  
+  const participare = document.getElementById("participare").value;
+
+  // 🔴 CAZ: NU POT PARTICIPA
+  if (participare === "Nu pot participa") {
+    const data = {
+      nume: document.getElementById("nume").value,
+      participare: participare,
+      persoane: 0,
+      meniu_normal: 0,
+      meniu_copii: 0,
+      meniu_vegan: 0
+    };
+
+    fetch("https://script.google.com/macros/s/AKfycbxeiVNPp-AzzJN1yzJb5iZgms_w9N2hpnitYSVHMdwOuU1i4YsOE76rUyFpTYxM0A_wRw/exec", {
+      method: "POST",
+      mode: "no-cors",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(data)
+    });
+
+    localStorage.setItem("rsvpTrimis", "da");
+    rsvpForm.innerHTML = "<h3>Vă mulțumim 🤍</h3><p>Ne pare rău că nu veți putea fi alături de noi.</p>";
+    return; // 🔥 OPRIM aici
+  }
+
+  // 🟢 CAZ: PARTICIPĂ
   const persoaneVal = parseInt(document.getElementById("persoane").value, 10);
   const normalVal  = parseInt(document.getElementById("meniu_normal").value, 10);
   const copiiVal   = parseInt(document.getElementById("meniu_copii").value, 10);
