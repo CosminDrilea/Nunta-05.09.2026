@@ -448,7 +448,7 @@ unei noi povești împreună.
   <div class="confirmare-text">
     Confirmare până pe data de 20.07.2026<br><br>
   </div>
-    <div class="special">
+    <div id="mesajDans" class="special">
     <br>Vă rugăm să fiți alături de noi la dansul mirilor – ora 21:00,<br>
     un moment special pe care dorim să îl trăim împreună cu voi.
   </div>
@@ -471,8 +471,10 @@ const detalii = document.getElementById("detaliiParticipare");
  participareSelect.addEventListener("change", () => {
    if (participareSelect.value === "Nu pot participa") {
      detalii.classList.add("hidden");
+     mesajDans.style.display = "none"
    } else {
      detalii.classList.remove("hidden")
+     mesaj.Dans.style.display ="block"
    }
  }); 
 
