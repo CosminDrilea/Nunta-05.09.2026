@@ -532,16 +532,24 @@ form.addEventListener("submit", function(e){
     };
 
     fetch("https://script.google.com/macros/s/AKfycbxeiVNPp-AzzJN1yzJb5iZgms_w9N2hpnitYSVHMdwOuU1i4YsOE76rUyFpTYxM0A_wRw/exec", {
-      method: "POST",
-      mode: "no-cors",
-      headers: {"Content-Type": "application/json"},
-      body: JSON.stringify(data)
-    });
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify(data)
+})
+.then(response => response.json())
+.then(result => {
 
-    localStorage.setItem("rsvpTrimis", "da");
-    rsvpForm.innerHTML = "<h3>Vă mulțumim 🤍</h3><p>Ne pare rău că nu veți putea fi alături de noi.</p>";
-    return; // 🔥 OPRIM aici
+  if (result.status === "duplicate") {
+    errorBox.innerText = "Acest nume a confirmat deja.";
+    errorBox.style.display = "block";
+    return;
   }
+
+  localStorage.setItem("rsvpTrimis", "da");
+  rsvpForm.innerHTML =
+    "<h3>Vă mulțumim 🤍</h3><p>Ne pare rău că nu veți putea fi alături de noi.</p>";
+
+});
 
   // 🟢 CAZ: PARTICIPĂ
   const persoaneVal = parseInt(document.getElementById("persoane").value, 10);
