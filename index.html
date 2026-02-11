@@ -469,12 +469,16 @@ if (localStorage.getItem("rsvpTrimis")) {
 // CONTROL PARTICIPARE – VARIANTA FINALĂ
 const participareSelect = document.getElementById("participare");
 const detalii = document.getElementById("detaliiParticipare");
-
+const mesajDans = document.getElementById("mesajDans");
+  
   participareSelect.addEventListener("change", () => {
+    
     if (participareSelect.value === "Nu pot participa") {
       detalii.style.display = "none";
+      mesajDans.style.display = "none";
     } else {
       detalii.style.display = "block"; 
+      mesajDans.style.display = "block"
     }
   });
 
