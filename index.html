@@ -535,21 +535,15 @@ form.addEventListener("submit", function(e){
   method: "POST",
   headers: { "Content-Type": "application/json" },
   body: JSON.stringify(data)
-})
-.then(response => response.json())
-.then(result => {
+});
 
-  if (result.status === "duplicate") {
-    errorBox.innerText = "Acest nume a confirmat deja.";
-    errorBox.style.display = "block";
-    return;
-  }
 
   localStorage.setItem("rsvpTrimis", "da");
   rsvpForm.innerHTML =
     "<h3>Vă mulțumim 🤍</h3><p>Ne pare rău că nu veți putea fi alături de noi.</p>";
+    return; // OPRIM aici
 
-});
+}
 
   // 🟢 CAZ: PARTICIPĂ
   const persoaneVal = parseInt(document.getElementById("persoane").value, 10);
