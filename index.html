@@ -506,6 +506,10 @@ errorBox.style.display = "none";
 const form = document.getElementById("rsvpForm");
 form.parentNode.insertBefore(errorBox, form);
 
+
+
+  
+
 /* SUBMIT */
 form.addEventListener("submit", function(e){
   e.preventDefault();
@@ -514,10 +518,6 @@ form.addEventListener("submit", function(e){
   errorBox.style.display = "none";
   errorBox.innerText = "";
 
-
-
-
-  
   const participare = document.getElementById("participare").value;
 
   // 🔴 CAZ: NU POT PARTICIPA
