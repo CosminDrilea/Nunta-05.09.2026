@@ -342,19 +342,23 @@ button {
 
 /* un glow la textul va rugam sa fiti prezenti la dansul mirilor... */
   
-  .special { 
+  .special {
+    font-weight: 700;
+    font-size: 22px;
+    letter-spacing: 0.5px;
     animation: romanticGlow 3s ease-in-out infinite alternate;
+    text-shadow: 0 0 10px rgba{255,255,255,0.7);
   }
   @keyframes romanticGlow {
     from {
       text-shadow:
-        0 0 5px rgba(255,255,255,0.6),
-        0 0 15px rgba(255,255,255,0.4);
+        0 0 8px rgba(255,255,255,0.8),
+        0 0 20px rgba(255,255,255,0.6);
     }
     to {
       text-shadow:
-        0 0 10px (255,255,255,0.9),
-        0 0 30px (255,200,180,0.6);
+        0 0 18px (255,255,255,0.8),
+        0 0 45px (255,200,180,0.9);
     }
   }
 
