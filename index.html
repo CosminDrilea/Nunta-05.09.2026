@@ -466,7 +466,7 @@ unei noi povești împreună.
       <option value="0">0</option><option value="1">1</option><option value="2">2</option>
     </select>
 
-    <select id="meniu_vegetarin">
+    <select id="meniu_vegetarian">
       <option value="0">Meniu vegetarian</option>
       <option value="0">0</option><option value="1">1</option><option value="2">2</option>
     </select>
@@ -564,7 +564,7 @@ form.addEventListener("submit", function(e){
       persoane: 0,
       meniu_normal: 0,
       meniu_copii: 0,
-      meniu_vegan : 0
+      meniu_vegetarian : 0
     };
 
     fetch("https://script.google.com/macros/s/AKfycbxeiVNPp-AzzJN1yzJb5iZgms_w9N2hpnitYSVHMdwOuU1i4YsOE76rUyFpTYxM0A_wRw/exec", {
@@ -585,9 +585,9 @@ form.addEventListener("submit", function(e){
   const persoaneVal = parseInt(document.getElementById("persoane").value, 10);
   const normalVal  = parseInt(document.getElementById("meniu_normal").value, 10);
   const copiiVal   = parseInt(document.getElementById("meniu_copii").value, 10);
-  const vegan Val   = parseInt(document.getElementById("meniu_vegan ").value, 10);
+  const vegetarianVal   = parseInt(document.getElementById("meniu_vegetarian").value, 10);
 
-  const totalMeniuri = normalVal + copiiVal + vegan Val;
+  const totalMeniuri = normalVal + copiiVal + vegetarianVal;
 
   /* VALIDARE 1: persoane */
   if (!persoaneVal || persoaneVal === 0) {
@@ -622,7 +622,7 @@ form.addEventListener("submit", function(e){
     persoane: persoaneVal,
     meniu_normal: normalVal,
     meniu_copii: copiiVal,
-    meniu_vegan : vegan Val
+    meniu_vegetarian : vegetarianVal
   };
 
 
